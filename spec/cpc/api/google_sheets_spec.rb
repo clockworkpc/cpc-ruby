@@ -17,12 +17,14 @@ RSpec.describe Cpc::Api::GoogleSheets do
 
   let(:master_document_args_hsh_ary) do
     [
-      { spreadsheetName: 'WidgetsRUs', spreadsheetId: '13Uk4GgmAJT9hPevM6kR_THayEIpWUznpl6twqpg2U5Y', sheetName: 'customers_usa', rangeStart: 'A20', rangeEnd: 'F30' },
-      { spreadsheetName: 'WidgetsRUs', spreadsheetId: '13Uk4GgmAJT9hPevM6kR_THayEIpWUznpl6twqpg2U5Y', sheetName: 'customers_au', rangeStart: 'A25', rangeEnd: 'F35' },
-      { spreadsheetName: 'FooBar Pty Ltd', spreadsheetId: '1_EPb9HNuf34uAFZKc1r0ieTV78JRpLd4BCk0mQXKkv8', sheetName: 'customers_uk', rangeStart: 'A30', rangeEnd: 'F40' },
-      { spreadsheetName: 'FooBar Pty Ltd', spreadsheetId: '1_EPb9HNuf34uAFZKc1r0ieTV78JRpLd4BCk0mQXKkv8', sheetName: 'customers_za', rangeStart: 'A35', rangeEnd: 'F45' }
+      { spreadsheet_name: 'WidgetsRUs', spreadsheetId: '13Uk4GgmAJT9hPevM6kR_THayEIpWUznpl6twqpg2U5Y', sheet: 'customers_usa', range_start: 'A20', range_end: 'F30', :headers=>"id|christian_name|surname|email|sex|ip_address" },
+      { spreadsheet_name: 'WidgetsRUs', spreadsheetId: '13Uk4GgmAJT9hPevM6kR_THayEIpWUznpl6twqpg2U5Y', sheet: 'customers_au', range_start: 'A25', range_end: 'F35', :headers=>"id|christian_name|surname|email|sex|ip_address" },
+      { spreadsheet_name: 'FooBar Pty Ltd', spreadsheetId: '1_EPb9HNuf34uAFZKc1r0ieTV78JRpLd4BCk0mQXKkv8', sheet: 'customers_uk', range_start: 'A30', range_end: 'F40', :headers=>"id|christian_name|surname|email|sex|ip_address" },
+      { spreadsheet_name: 'FooBar Pty Ltd', spreadsheetId: '1_EPb9HNuf34uAFZKc1r0ieTV78JRpLd4BCk0mQXKkv8', sheet: 'customers_za', range_start: 'A35', range_end: 'F45', :headers=>"id|christian_name|surname|email|sex|ip_address" }
     ]
   end
+
+  let(:collected_ranges_json) { File.read('spec/fixtures/mock_data/collected_ranges.json') }
 
   context 'Mock Data', online: true do
     subject = Cpc::Api::GoogleSheets.new('clockworkpc')
@@ -95,19 +97,33 @@ RSpec.describe Cpc::Api::GoogleSheets do
     end
 
     context 'Master Document' do
+
       it 'should return the Master Document as a Hash' do
         args_hsh = {
           spreadsheetId: extract_spreadsheetId(master_document_url),
           sheet: 'customer_records',
           range_start: 'A1',
-          range_end: 'E1000'
+          range_end: 'F1000'
         }
 
-        spreadsheet = subject.get_values_from_spreadsheet(args_hsh)
-        args_hsh_ary = subject.convert_spreadsheet_to_hash_array(spreadsheet)
+        args_hsh_ary = subject.create_reference_hash_array(args_hsh)
+        expect(args_hsh_ary).to eq(master_document_args_hsh_ary)
+      end
 
-        binding.pry
+      it 'should collect ranges specified by reference Hash Array' do
+        args_hsh = {
+          spreadsheetId: extract_spreadsheetId(master_document_url),
+          sheet: 'customer_records',
+          range_start: 'A1',
+          range_end: 'F1000'
+        }
+
+        ref_hsh_ary = subject.create_reference_hash_array(args_hsh)
+        range_hsh_ary = subject.collect_ranges_from_ref_hsh_ary(ref_hsh_ary)
+        json = JSON.pretty_generate(range_hsh_ary)
+        expect(JSON.parse(json)).to eq(JSON.parse(collected_ranges_json))
       end
     end
+
   end
 end

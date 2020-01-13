@@ -63,73 +63,26 @@ module Cpc
         hsh_ary.map { |hsh| hsh.symbolize_keys }
       end
 
-
-
-      def create_reference_hash(ary_ary, spreadsheetId_str)
-        tab_hsh = Hash.new
-        ary_ary.each do |ary|
-          sheet_str = ary[0],
-          range_start_str = ary[1],
-          range_end_str = ary[2]
-
-          tab_hsh[ary[0]] = {
-            spreadsheetId: spreadsheetId_str,
-            sheet: ary[0],
-            range_start: ary[1],
-            range_end: ary[2]
-          }
-        end
-        tab_hsh
-      end
-
-      def collect_ranges_from_tabs(ref_hsh)
-        range_hsh = Hash.new
-        ref_hsh.each { |k, hsh| range_hsh[k] = get_values_from_spreadsheet(hsh).values }
-        range_hsh
-      end
-
-      def create_reference_hash_array(spreadsheetId_str)
-        header_arg_hsh = {
-          spreadsheetId: spreadsheetId_str,
-          sheet: 'reference',
-          range_start: 'A1',
-          range_end: 'F1'
-        }
-        header_ary_ary = get_values_from_spreadsheet(header_arg_hsh).values.flatten
-
-        row_arg_hsh = {
-          spreadsheetId: spreadsheetId_str,
-          sheet: 'reference',
-          range_start: 'A2',
-          range_end: 'F100'
-        }
-        row_ary = get_values_from_spreadsheet(row_arg_hsh).values.reject {|ary| ary.empty?}
-
-        ref_hsh_ary = Array.new
-
-        row_ary.each do |row|
-          ref_hsh_ary << {
-            document: row[0],
-            spreadsheetId: row[1],
-            sheet: row[2],
-            range_start: row[3],
-            range_end: row[4],
-            target_table: row[5],
-            headers: header_ary_ary
-          }
-        end
-
-        ref_hsh_ary
+      def create_reference_hash_array(args_hsh)
+        spreadsheet = get_values_from_spreadsheet(args_hsh)
+        convert_spreadsheet_to_hash_array(spreadsheet)
       end
 
       def collect_ranges_from_ref_hsh_ary(ref_hsh_ary)
+        range_hsh_ary = Array.new
         collected_range_ary = Array.new
         ref_hsh_ary.each do |ref_hsh|
           range_ary_ary = get_values_from_spreadsheet(ref_hsh).values
           collected_range_ary << [ref_hsh, range_ary_ary]
         end
-        binding.pry
-        collected_range_ary
+        collected_range_ary.each do |ary|
+          key_ary = ary[0][:headers].split("|")
+          ary_ary = ary[1]
+          values_hsh_ary = convert_nested_array_to_hash_array(key_ary, ary_ary)
+          range_hsh_ary << {spreadsheet_details: ary[0], spreadsheet_values: values_hsh_ary }
+        end
+
+        range_hsh_ary
       end
 
       def collect_ranges_from_reference_sheet(spreadsheetId_str)
