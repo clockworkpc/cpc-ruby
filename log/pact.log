@@ -1,0 +1,41 @@
+# Logfile created on 2020-01-14 09:21:47 +1100 by logger.rb/66358
+I, [2020-01-14T09:21:47.426416 #14686]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x00005653f1315e48> on port 1234...
+I, [2020-01-14T09:21:47.545852 #14686]  INFO -- : Started on port 1234
+I, [2020-01-14T09:21:47.609134 #14686]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:21:47.614080 #14686]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:21:47.621085 #14686] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T09:23:04.470300 #14717]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055994b15d440> on port 1234...
+I, [2020-01-14T09:23:04.576628 #14717]  INFO -- : Started on port 1234
+I, [2020-01-14T09:23:04.608381 #14717]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:23:04.613004 #14717]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:23:04.617192 #14717] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T09:24:26.609522 #14786]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055d6b347f240> on port 1234...
+I, [2020-01-14T09:24:26.726025 #14786]  INFO -- : Started on port 1234
+I, [2020-01-14T09:24:26.776641 #14786]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:24:26.785275 #14786]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:24:26.793646 #14786] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T09:25:05.794884 #14814]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055558424f200> on port 1234...
+I, [2020-01-14T09:25:05.906626 #14814]  INFO -- : Started on port 1234
+I, [2020-01-14T09:25:06.005848 #14814]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:25:06.022042 #14814]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:25:06.032632 #14814] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T09:25:42.532526 #14835]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x00005582e487dd38> on port 1234...
+I, [2020-01-14T09:25:42.643605 #14835]  INFO -- : Started on port 1234
+I, [2020-01-14T09:25:42.689792 #14835]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:25:42.697019 #14835]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:25:42.702618 #14835] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T09:28:03.885206 #14866]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055967ed31b10> on port 1234...
+I, [2020-01-14T09:28:03.994185 #14866]  INFO -- : Started on port 1234
+I, [2020-01-14T09:28:04.039424 #14866]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:28:04.046193 #14866]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:28:04.052578 #14866] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T09:28:19.118339 #14886]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055c2ecf56248> on port 1234...
+I, [2020-01-14T09:28:19.226598 #14886]  INFO -- : Started on port 1234
+I, [2020-01-14T09:28:19.256298 #14886]  INFO -- : Clearing all expectations
+I, [2020-01-14T09:28:19.264943 #14886]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T09:28:19.270471 #14886] DEBUG -- : Supposed to be stopping
+I, [2020-01-14T12:15:28.642328 #15416]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055fffef279a8> on port 1234...
+I, [2020-01-14T12:15:28.753566 #15416]  INFO -- : Started on port 1234
+I, [2020-01-14T12:15:48.181017 #15416]  INFO -- : Clearing all expectations
+I, [2020-01-14T12:15:48.189242 #15416]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-14T12:15:48.196324 #15416] DEBUG -- : Supposed to be stopping
