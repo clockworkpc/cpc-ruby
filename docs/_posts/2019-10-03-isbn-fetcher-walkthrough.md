@@ -3,8 +3,10 @@ layout: post
 title: "ISBN Fetcher Walkthrough"
 author: Alexander Garber
 date: 2019-10-03 17:36:00 +1000
-tags: [walkthrough, isbn-fetcher]
+tags: [walkthrough, isbn-fetcher, practical-problem-solving]
 ---
+
+## Practical Problem Solving
 
 This is a walkthrough for the "ISBN Fetcher" defined by the class `Cpc::Toolkit::IsbnFetcher`.
 
