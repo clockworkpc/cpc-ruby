@@ -1,7 +1,7 @@
 # CPC-Ruby
 
 The main purposes of this Ruby project: 
-1. Encapsulate all my practical knowledge of Ruby into a Living Document of RSpec unit tests and Cucumber Features. 
+1. Encapsulate all my practical knowledge of Ruby into a **Living Document** of RSpec unit tests and Cucumber Features. 
 1. Refine my TDD, BDD, and SBE-focused approach to solving problems.
 1. Practise vital programming skills -- Git, information security, etc.
 
