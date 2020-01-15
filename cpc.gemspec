@@ -41,7 +41,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'pry'
   spec.add_runtime_dependency 'clipboard'
   spec.add_runtime_dependency 'csv'
-  spec.add_runtime_dependency 'fileutils'
   spec.add_runtime_dependency 'nokogiri'
   spec.add_runtime_dependency 'docker-api'
   spec.add_runtime_dependency 'google-api-client'
