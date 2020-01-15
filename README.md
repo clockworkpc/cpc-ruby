@@ -5,7 +5,7 @@ The main purposes of this Ruby project:
 1. Refine my TDD, BDD, and SBE-focused approach to solving problems.
 1. Practise vital programming skills -- Git, information security, etc.
 
-In short, it goes some way to answering the question, "What problems can you solve, and how do you solve them in Ruby"?
+In short, it goes some way to answering the question, "*What problems can you solve, and how do you solve them in Ruby*"?
 
 ## Getting Started
 
