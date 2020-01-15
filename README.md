@@ -1,8 +1,11 @@
 # CPC-Ruby
 
-The purpose of this public repository is to demonstrate the creation and management of a software project with a focus on **test automation**.
+The main purposes of this Ruby project: 
+1. Encapsulate all my practical knowledge of Ruby into a Living Document of RSpec unit tests and Cucumber Features. 
+1. Refine my TDD, BDD, and SBE-focused approach to solving problems.
+1. Practise vital programming skills -- Git, information security, etc.
 
-Full documentation here: https://clockworkpc.github.io/cpc-ruby/
+In short, it goes some way to answering the question, "What problems can you solve, and how do you solve them in Ruby"?
 
 ## Getting Started
 

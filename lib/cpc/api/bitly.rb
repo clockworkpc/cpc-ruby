@@ -32,6 +32,7 @@ module Cpc
           request_body: { 'long_url' => long_url },
           request_headers: standard_request_headers
         }
+        binding.pry
         api_post_request(args_hsh)
       end
 
