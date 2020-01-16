@@ -26,9 +26,9 @@ module Cpc
 
         case
         when @res.body.nil?
-          puts 'No body'
+          # puts 'No body'
         when actual_encoding.eql?(encoding_str)
-          puts "Encoding already #{actual_encoding}"
+          # puts "Encoding already #{actual_encoding}"
         else
           @res.body = @res.body.force_encoding('UTF-8')
         end

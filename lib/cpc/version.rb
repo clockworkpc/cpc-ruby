@@ -1,3 +1,3 @@
 module Cpc
-	VERSION = "18.1.15"
+	VERSION = "18.1.17"
 end

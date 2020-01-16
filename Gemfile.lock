@@ -1,14 +1,13 @@
 PATH
   remote: .
   specs:
-    cpc (0.4.0)
+    cpc (18.1.15)
       activesupport
       clipboard
       csv
       docker-api
       dotenv (~> 2.7)
       facets
-      fileutils
       google-api-client
       nokogiri
       pry
@@ -64,7 +63,6 @@ GEM
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
-    fileutils (1.4.1)
     find_a_port (1.0.1)
     formatador (0.2.5)
     gherkin (5.1.0)
