@@ -1,0 +1,33 @@
+{
+  "consumer": {
+    "name": "Zoo App"
+  },
+  "provider": {
+    "name": "Animal Service"
+  },
+  "interactions": [
+    {
+      "description": "a request for an alligator",
+      "providerState": "an alligator exists",
+      "request": {
+        "method": "get",
+        "path": "/alligator",
+        "query": ""
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Betty"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

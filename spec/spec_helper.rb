@@ -23,6 +23,7 @@ require 'cpc/api/google_sheets'
 require 'cpc/api/httpbin'
 require 'cpc/api/http_cat'
 require 'cpc/api/json_placeholder'
+require 'cpc/api/my_restful_api'
 
 require 'cpc/util/api_util'
 require 'cpc/util/case_util'
@@ -35,6 +36,9 @@ require 'cpc/util/pleasing_print_util'
 require 'cpc/util/string_util'
 require 'cpc/util/time_stamp_util'
 require 'cpc/util/util'
+
+require 'cpc/pact/animal_service_client'
+require 'cpc/pact/animal_service/alligator'
 
 def hello_spec_helper
   puts Rainbow("Hello, Spec Helper!").green

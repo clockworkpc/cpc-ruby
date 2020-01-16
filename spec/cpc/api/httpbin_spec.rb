@@ -157,6 +157,7 @@ RSpec.describe Cpc::Api::Httpbin do
 
             if docker_running && homepage_loaded
               puts "Everything looks good..."
+              sleep 1
               @container_id = container_id
               break
             end
