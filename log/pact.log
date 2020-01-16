@@ -39,3 +39,13 @@ I, [2020-01-14T12:15:28.753566 #15416]  INFO -- : Started on port 1234
 I, [2020-01-14T12:15:48.181017 #15416]  INFO -- : Clearing all expectations
 I, [2020-01-14T12:15:48.189242 #15416]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
 D, [2020-01-14T12:15:48.196324 #15416] DEBUG -- : Supposed to be stopping
+I, [2020-01-16T14:45:09.034344 #351]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055b81dc63790> on port 1234...
+I, [2020-01-16T14:45:09.139249 #351]  INFO -- : Started on port 1234
+I, [2020-01-16T14:45:33.981914 #351]  INFO -- : Clearing all expectations
+I, [2020-01-16T14:45:34.024074 #351]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-16T14:45:34.045830 #351] DEBUG -- : Supposed to be stopping
+I, [2020-01-16T14:47:15.515262 #1128]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x00005570a469c0c0> on port 1234...
+I, [2020-01-16T14:47:15.629520 #1128]  INFO -- : Started on port 1234
+I, [2020-01-16T14:47:33.676817 #1128]  INFO -- : Clearing all expectations
+I, [2020-01-16T14:47:33.693696 #1128]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
+D, [2020-01-16T14:47:33.706300 #1128] DEBUG -- : Supposed to be stopping

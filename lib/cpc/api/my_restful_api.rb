@@ -19,8 +19,14 @@ module Cpc
         api_get_request(args_hsh)
       end
 
-      def post_contact
-        args_hsh = { url: { host: @host, path: 'contact' } }
+      def post_contact(contact_hsh)
+
+        request_body_uri = URI.encode(contact_hsh.map {|k,v| "#{k}=#{v}"}.join('&'))
+
+        args_hsh = {
+          url: { host: @host, path: 'contact' },
+          request_body: request_body_uri
+        }
         api_post_request(args_hsh)
       end
 

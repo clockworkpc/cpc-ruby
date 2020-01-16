@@ -45,18 +45,22 @@ module Cpc
       end
 
       def add_body_to_request(request, body_input)
+        # TODO: differentiate between form-data, x-wwww-form-urlencoded, raw, binary, graphql
+
         case
-        when body_input.is_a?(String)
-          body_json = JSON.parse(body_input) if valid_json?(body_input)
+        when body_input.is_a?(String) && valid_json?(body_input)
+          request_body = JSON.parse(body_input)
+        when body_input.is_a?(String) && URI.parse(body_input).is_a?(URI)
+          request_body = body_input
         when body_input.is_a?(Hash)
-          body_json = body_input.stringify_keys.to_json
+          request_body = body_input.stringify_keys.to_json
         when body_input.nil?
-          body_json = nil
+          request_body = nil
         else
-          body_json = body_input.map { |k, v| [k.to_s, v] }.to_h.stringify_keys.to_json
+          request_body = body_input.map { |k, v| [k.to_s, v] }.to_h.stringify_keys.to_json
         end
 
-        request.body = body_json
+        request.body = request_body
         request
       end
 
@@ -68,8 +72,6 @@ module Cpc
       def api_request(type_str, args_hsh, encoding_str)
         url = construct_url_with_path_and_params(args_hsh[:url], args_hsh[:url_params])
         uri = URI(url)
-        # uri = URI(URI.escape(url))
-        # puts Rainbow(URI.escape(url)).yellow
 
         http = Net::HTTP.new(uri.host, uri.port)
         on_local_pc = uri.host.eql?('0.0.0.0') || uri.host.eql?('localhost')
@@ -80,8 +82,9 @@ module Cpc
         add_body_to_request(request, args_hsh[:request_body])
 
         res_obj = http.request(request)
+        response_300_range = res_obj.code.to_i >= 300 && res_obj.code.to_i < 400
 
-        if res_obj.code.to_i == 302
+        if response_300_range
           url = [args_hsh[:url][:host], res_obj['location']].join
           uri = URI(url)
           puts "Redirecting to #{url}"
