@@ -1,0 +1,147 @@
+[
+  {
+    "id": "CATEGORY_PERSONAL",
+    "name": "CATEGORY_PERSONAL",
+    "type": "system"
+  },
+  {
+    "id": "Label_4",
+    "name": "Personal",
+    "type": "user"
+  },
+  {
+    "id": "CATEGORY_SOCIAL",
+    "name": "CATEGORY_SOCIAL",
+    "type": "system"
+  },
+  {
+    "id": "Label_13",
+    "name": "[Imap]/Archive",
+    "type": "user"
+  },
+  {
+    "id": "Label_16",
+    "name": "Archives",
+    "type": "user"
+  },
+  {
+    "id": "Label_1",
+    "name": "[Imap]/Drafts",
+    "type": "user"
+  },
+  {
+    "id": "Label_3",
+    "name": "[Imap]/Trash",
+    "type": "user"
+  },
+  {
+    "id": "Label_5",
+    "name": "Programming",
+    "type": "user"
+  },
+  {
+    "id": "Label_12",
+    "name": "MLK",
+    "type": "user"
+  },
+  {
+    "id": "Label_11",
+    "name": "WhatsApp",
+    "type": "user"
+  },
+  {
+    "id": "CATEGORY_FORUMS",
+    "name": "CATEGORY_FORUMS",
+    "type": "system"
+  },
+  {
+    "id": "Label_6",
+    "name": "Receipts",
+    "type": "user"
+  },
+  {
+    "id": "Label_10",
+    "name": "Call log",
+    "type": "user"
+  },
+  {
+    "id": "Label_9",
+    "name": "Work",
+    "type": "user"
+  },
+  {
+    "id": "Label_2",
+    "name": "[Imap]/Sent",
+    "type": "user"
+  },
+  {
+    "id": "Label_7",
+    "name": "SMS",
+    "type": "user"
+  },
+  {
+    "id": "IMPORTANT",
+    "name": "IMPORTANT",
+    "type": "system"
+  },
+  {
+    "id": "Label_14",
+    "name": "[Mailspring]/Snoozed",
+    "type": "user"
+  },
+  {
+    "id": "CATEGORY_UPDATES",
+    "name": "CATEGORY_UPDATES",
+    "type": "system"
+  },
+  {
+    "id": "CHAT",
+    "name": "CHAT",
+    "type": "system"
+  },
+  {
+    "id": "SENT",
+    "name": "SENT",
+    "type": "system"
+  },
+  {
+    "id": "INBOX",
+    "name": "INBOX",
+    "type": "system"
+  },
+  {
+    "id": "TRASH",
+    "name": "TRASH",
+    "type": "system"
+  },
+  {
+    "id": "CATEGORY_PROMOTIONS",
+    "name": "CATEGORY_PROMOTIONS",
+    "type": "system"
+  },
+  {
+    "id": "DRAFT",
+    "name": "DRAFT",
+    "type": "system"
+  },
+  {
+    "id": "SPAM",
+    "name": "SPAM",
+    "type": "system"
+  },
+  {
+    "id": "STARRED",
+    "name": "STARRED",
+    "type": "system"
+  },
+  {
+    "id": "UNREAD",
+    "name": "UNREAD",
+    "type": "system"
+  },
+  {
+    "id": "Label_15",
+    "name": "Unroll.me",
+    "type": "user"
+  }
+]

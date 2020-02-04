@@ -24,5 +24,7 @@ codementor.md
 # Gemfile.lock
 
 credentials.json
-credentials/
 token.yaml
+
+config/credentials/*
+config/tokens/*

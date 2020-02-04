@@ -19,6 +19,7 @@ require 'cpc/toolkit/har_harvester'
 require 'cpc/toolkit/isbn_fetcher'
 
 require 'cpc/api/bitly'
+require 'cpc/api/gmail'
 require 'cpc/api/google_sheets'
 require 'cpc/api/httpbin'
 require 'cpc/api/http_cat'
