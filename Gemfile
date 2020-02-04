@@ -9,6 +9,7 @@ gem 'docker-api'
 gem 'dotenv'
 gem 'facets'
 gem 'google-api-client'
+gem 'graphql'
 gem 'guard-rspec', require: false
 gem 'httparty'
 gem 'nokogiri'

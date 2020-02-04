@@ -1,6 +1,6 @@
-I, [2020-01-16T14:47:33.680902 #1128]  INFO -- : Cleared interactions before example "Cpc::Pact::AnimalServiceClient get_alligator returns a alligator"
-I, [2020-01-16T14:47:33.686615 #1128]  INFO -- : Registered expected interaction GET /alligator
-D, [2020-01-16T14:47:33.686835 #1128] DEBUG -- : {
+I, [2020-01-19T20:29:40.618613 #5996]  INFO -- : Cleared interactions for example "Cpc::Pact::AnimalServiceClient get_alligator returns a alligator"
+I, [2020-01-19T20:29:40.625148 #5996]  INFO -- : Registered expected interaction GET /alligator
+D, [2020-01-19T20:29:40.625428 #5996] DEBUG -- : {
   "description": "a request for an alligator",
   "providerState": "an alligator exists",
   "request": {
@@ -16,10 +16,11 @@ D, [2020-01-16T14:47:33.686835 #1128] DEBUG -- : {
     "body": {
       "name": "Betty"
     }
-  }
+  },
+  "metadata": null
 }
-I, [2020-01-16T14:47:33.690214 #1128]  INFO -- : Received request GET /alligator
-D, [2020-01-16T14:47:33.690635 #1128] DEBUG -- : {
+I, [2020-01-19T20:29:40.632230 #5996]  INFO -- : Received request GET /alligator
+D, [2020-01-19T20:29:40.632565 #5996] DEBUG -- : {
   "path": "/alligator",
   "query": "",
   "method": "get",
@@ -32,8 +33,8 @@ D, [2020-01-16T14:47:33.690635 #1128] DEBUG -- : {
     "Version": "HTTP/1.1"
   }
 }
-I, [2020-01-16T14:47:33.692073 #1128]  INFO -- : Found matching response for GET /alligator
-D, [2020-01-16T14:47:33.692202 #1128] DEBUG -- : {
+I, [2020-01-19T20:29:40.632900 #5996]  INFO -- : Found matching response for GET /alligator
+D, [2020-01-19T20:29:40.633046 #5996] DEBUG -- : {
   "status": 200,
   "headers": {
     "Content-Type": "application/json"
@@ -42,6 +43,5 @@ D, [2020-01-16T14:47:33.692202 #1128] DEBUG -- : {
     "name": "Betty"
   }
 }
-I, [2020-01-16T14:47:33.695958 #1128]  INFO -- : Verifying - interactions matched for example "Cpc::Pact::AnimalServiceClient get_alligator returns a alligator"
-I, [2020-01-16T14:47:33.699088 #1128]  INFO -- : Writing pact with details {:consumer=>{:name=>"Zoo App"}, :provider=>{:name=>"Animal Service"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/home/alexandergarber/Development/study/cpc-ruby/spec/pacts"}
-I, [2020-01-16T14:47:33.699182 #1128]  INFO -- : Writing pact for Animal Service to /home/alexandergarber/Development/study/cpc-ruby/spec/pacts/zoo_app-animal_service.json
+I, [2020-01-19T20:29:40.639441 #5996]  INFO -- : Verifying - interactions matched for example "Cpc::Pact::AnimalServiceClient get_alligator returns a alligator"
+I, [2020-01-19T20:29:40.647702 #5996]  INFO -- : Writing pact for Animal Service to /home/alexandergarber/Development/study/cpc-ruby/spec/pacts/zoo_app-animal_service.json
