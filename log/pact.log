@@ -49,3 +49,5 @@ I, [2020-01-16T14:47:15.629520 #1128]  INFO -- : Started on port 1234
 I, [2020-01-16T14:47:33.676817 #1128]  INFO -- : Clearing all expectations
 I, [2020-01-16T14:47:33.693696 #1128]  INFO -- : Verifying interactions for Cpc::Pact::AnimalServiceClient get_alligator returns a alligator
 D, [2020-01-16T14:47:33.706300 #1128] DEBUG -- : Supposed to be stopping
+I, [2020-02-12T06:22:59.864678 #16150]  INFO -- : Starting app Animal Service #<Pact::MockService::App:0x000055c369212b68> on port 1234...
+I, [2020-02-12T06:23:00.100603 #16150]  INFO -- : Started on port 1234
