@@ -62,8 +62,14 @@ module Cpc
         result = service.list_user_labels user_id
         puts "Labels:"
         puts "No labels found" if result.labels.empty?
-        binding.pry
         result.labels.each { |label| puts "- #{label.name}" }
+        result.labels.map {|l| {id: l.id, name: l.name, type: l.type} }
+      end
+
+      def all_emails_inbox
+        service = start_service
+        user_id = "me"
+        result = 
       end
     end
   end
