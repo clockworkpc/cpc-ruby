@@ -41,6 +41,9 @@ require 'cpc/pact/animal_service_client'
 require 'cpc/pact/animal_service/alligator'
 
 require 'cpc/study/my_blocks'
+require 'cpc/study/spaceship'
+require 'cpc/study/execute_around'
+require 'cpc/study/block_to_proc'
 
 def hello_spec_helper
   puts Rainbow("Hello, Spec Helper!").green

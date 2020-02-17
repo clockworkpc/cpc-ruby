@@ -5,6 +5,7 @@ gemspec
 gem "activesupport", ">= 4.1.11"
 gem 'clipboard'
 gem 'cucumber'
+gem  'class_indexer'
 gem 'docker-api'
 gem 'dotenv'
 gem 'facets'

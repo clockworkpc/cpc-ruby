@@ -1,6 +1,8 @@
 module Cpc
   module Study
     class Spaceship
+      attr_reader :debug_attrs
+
       def initialize
         @debug = true
         @debug_attrs = { containment_status: :ok, core_temp: 350 }
@@ -15,9 +17,16 @@ module Cpc
 
       def locate_cargo
         attrs = {weight: 10, destination: "Earth"}
-        debug_only { |attrs| attrs[:cargo_accessed] = true }
-        attrs, @debug_attrs
+        cargo_accessed = debug_only { |attrs| attrs[:cargo_accessed] = true }
+        { attrs: attrs, cargo_accessed: cargo_accessed }
+      end
 
+      def locate_cargo_with_shadowed_attrs_hsh
+        attrs = {weight: 10, destination: "Earth"}
+        cargo_accessed = debug_only do |d_attrs; attrs|
+          attrs = {}
+      end
+        { attrs: attrs, cargo_accessed: cargo_accessed }
       end
     end
   end
