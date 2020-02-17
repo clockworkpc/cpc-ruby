@@ -5,10 +5,19 @@ module Cpc
         param_class = param.class
         block_class = block.class if block_given?
 
-        puts "param_class: #{param_class}"
-        puts "block_class: #{block_class}"
-
         { param_class: param_class, block_class: block_class }
+      end
+
+      def my_proc
+        Proc.new { |x| x }
+      end
+
+      def basic_lambda
+        lambda { |x| x }
+      end
+
+      def stabby_lambda
+
       end
     end
   end
