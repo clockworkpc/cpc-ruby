@@ -77,9 +77,6 @@ RSpec.describe Cpc::Study::BlockToProc do
       end
 
       expect(convert_string.call(words_space)).to eq(words_kebab)
-
-
-
     end
 
   end
