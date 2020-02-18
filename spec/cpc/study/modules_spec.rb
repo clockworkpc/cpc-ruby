@@ -8,23 +8,41 @@ RSpec.describe Cpc::Study::Modules do
     end
 
     it 'should include an instance method from a Module' do
-      expect(Cpc::Study::Modules.new.hello_study_instance_methods)
-      .to eq('Hello, study instance methods!')
+
+      expect {Cpc::Study::Modules.hello_study_instance_methods}
+        .to raise_exception(NoMethodError)
     end
 
     it 'should extend a Class method from a Module' do
       expect(Cpc::Study::Modules.hello_study_class_methods)
       .to eq('Hello, study class methods!')
-    end
 
-    it 'should both include an extend from a Module' do
-      expect(Cpc::Study::Modules.new.hello_instance).to eq('Hello, this is an instance method')
-      expect(Cpc::Study::Modules.new.hello_class).to eq('Hello, this is a class method')
+      expect {Cpc::Study::Modules.new.hello_study_class_methods}
+      .to raise_exception(NoMethodError)
     end
 
     it 'should both include an extend from a Module' do
       expect(Cpc::Study::Modules.hello_class).to eq('Hello, this is a class method')
       expect(Cpc::Study::Modules.hello_instance).to eq('Hello, this is an instance method')
+    end
+  end
+
+  context 'Cpc::Study::Module.new', offline: true do
+    it 'should inherit instance methods' do
+      expect(Cpc::Study::Modules.new.hello_study_instance_methods)
+        .to eq('Hello, study instance methods!')
+
+      expect(Cpc::Study::Modules.new.hello_instance)
+        .to eq('Hello, this is an instance method')
+
+      expect(Cpc::Study::Modules.new.hello_class)
+        .to eq('Hello, this is a class method')
+    end
+  end
+
+  context 'Cpc::Study::Module', offline: true do
+    it 'should inherit Class methods' do
+
     end
   end
 end
