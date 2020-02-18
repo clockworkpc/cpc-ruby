@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe Cpc::Study::BlockToProc do
+  let(:words_space) { 'hello world in a block' }
+  let(:words_kebab) { 'Hello-World-In-A-Block' }
+
+
   context 'Blocks', offline: true do
     it "should pass empty block" do
       p = Proc.new {|bla| "I'm a Proc that says #{bla}"}
@@ -65,6 +69,19 @@ RSpec.describe Cpc::Study::BlockToProc do
       #   .to raise_exception
     end
 
+    it 'should store and apply a multi-step operation on an object' do
+      convert_string = Proc.new do |str|
+        w_ary = str.split
+        c_ary = w_ary.map { |w| w.sub(w[0], w[0].upcase) }
+        j_str = c_ary.join('-')
+      end
+
+      expect(convert_string.call(words_space)).to eq(words_kebab)
+
+
+
+    end
+
   end
 
   context 'Lambda', offline: true do
@@ -97,6 +114,42 @@ RSpec.describe Cpc::Study::BlockToProc do
     it 'should require three arguments' do
       lam = lambda { |x, y, z| [x, y, z] }
       expect(lam.arity).to eq(3)
+    end
+  end
+
+  context 'Case Statement', offline: true do
+    it 'should receive the return value of Proc' do
+      weekend = Proc.new { |time| time.saturday? || time.sunday? }
+      weekday = Proc.new { |time| time.wday < 6 }
+
+      case Time.now
+      when weekend then day = :weekend
+      when weekday then day = :weekday
+      end
+
+      expect(day).to eq(:weekday)
+    end
+
+    it 'should receive the return value of Lambda' do
+      weekend = ->(time) { time.saturday? || time.sunday? }
+      weekday = ->(time) { time.wday < 6 }
+
+      case Time.now
+      when weekend then day = :weekend
+      when weekday then day = :weekday
+      end
+
+      expect(day).to eq(:weekday)
+    end
+  end
+
+  context 'Conversion of Symbol to Proc', offline: true do
+    it 'should execute a block iteration' do
+      vehicles = %w[car train bus tram]
+      umap = vehicles.map { |v| v.upcase }
+      usym = vehicles.map(&:upcase)
+
+      expect(usym).to eq(umap)
     end
   end
 
