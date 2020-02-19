@@ -23,12 +23,8 @@ module Cpc
       base.extend(StudyClassAndInstanceMethods)
     end
 
-    def hello_class
-      'Hello, this is a class method'
+    def hello_study_class_and_instance_methods
+      'Hello, study class and instance methods'
     end
-
-    def hello_instance
-      'Hello, this is an instance method'
-    end 
   end
 end
