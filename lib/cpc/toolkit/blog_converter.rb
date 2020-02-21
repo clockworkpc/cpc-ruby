@@ -14,35 +14,34 @@ module Cpc
       end
 
       def post_divs
-        x = self.doc.xpath("//div")
-        binding.pry
+        self.doc.xpath("//div[h1][h2][h3][div]")
       end
 
-      def post_headers
-        self.doc.xpath("//div//h1").map {|h1| h1.text}
+      def post_markdown(xml)
+        h1 = xml.children.map {|c| c.text if c.name == 'h1' }.compact.first
+        h2 = xml.children.map {|c| c.text if c.name == 'h2' }.compact.first
+        h3 = xml.children.map {|c| c.text if c.name == 'h3' }.compact.first
+        body = xml.children.map {|c| c.text if c.name == 'div' }.compact.first
+
+        {
+          h1: h1,
+          h2: h2,
+          h3: h3,
+          body: body
+        }
       end
 
-      def post_dates
-        self.doc.xpath("//div/h2").map {|h2| h2.text}
-      end
+      def save_posts
+        dir = 'spec/output/blog_posts'
+        posts_hsh_ary = Array.new
+        post_divs.each do |xml|
+          md = post_markdown(xml)
+          path = [dir, md[:h1]].join('/')
+          f = File.open(path, 'w')
+          f.write(md[:h1])
+          # Write text block and yaml front matter
 
-      def add_post_headers_to_collection(posts_hsh)
-        post_headers.each_with_index {|n,i| posts_hsh["post_#{i}"] = {h1: n} }
-      end
-
-      def add_post_dates_to_collection(posts_hsh)
-        # post_dates.each_with_index do |n, i|
-        #   key = "post_"
-        # end
-      end
-
-
-
-      def posts
-        posts_hsh = Hash.new
-        add_post_headers_to_collection(posts_hsh)
-
-        binding.pry
+        end
       end
 
 
