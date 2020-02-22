@@ -9,6 +9,20 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
     HEREDOC
   end
 
+  let(:post_md_sample) do
+    <<~HEREDOC
+    ---
+    layout: post
+    title: 'Atom Text Editor: My New IDE?'
+    date: '2016-10-27'
+    tags: []
+    ---
+    Alexander Garber
+
+    #{post_body_text}
+    HEREDOC
+  end
+
   context 'Large feed.html', offline: true do
     feed_path = '/home/alexandergarber/Development/publish/clockworkpc.github.io/_archive/feed.html'
     subject = Cpc::Toolkit::BlogConverter.new(feed_path)
@@ -23,15 +37,18 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
 
     it 'should extract the h1, h2, h3, and body div' do
       xml = subject.post_divs[6]
-      post = subject.post_markdown(xml)
-      expect(post[:h1]).to eq('Atom Text Editor: My New IDE?')
-      expect(post[:h2]).to eq('Alexander Garber')
-      expect(post[:h3]).to eq('2016-10-27')
+      post = subject.extract_text_from_xml(xml)
+      expect(post[:title]).to eq('Atom Text Editor: My New IDE?')
+      expect(post[:author]).to eq('Alexander Garber')
+      expect(post[:date]).to eq('2016-10-27')
       expect(post[:body]).to eq(post_body_text.strip)
     end
 
-    it 'should generate ' do
-
+    it 'should generate blog post from text Hash' do
+      xml = subject.post_divs[6]
+      text_hsh = subject.extract_text_from_xml(xml)
+      post_md = subject.generate_blog_post(text_hsh)
+      expect(post_md).to eq(post_md_sample.strip)
     end
 
   end
