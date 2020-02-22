@@ -1,11 +1,9 @@
-require_relative '../util/file_parse_util'
-require_relative '../util/collection_util'
+require_relative '../util/string_util'
 
 module Cpc
   module Toolkit
     class BlogConverter
-      include Cpc::Util::FileParseUtil
-      include Cpc::Util::CollectionUtil
+      include Cpc::Util::StringUtil
 
       attr_reader :doc
 
@@ -41,7 +39,8 @@ module Cpc
           title: h1,
           author: h2,
           date: h3,
-          body: body
+          body: body.sub(/([\:\.])/, "#{$1}\n"),
+          basename: [StringUtil.convert_to_file_basename(h1), 'md'].join('.')
         }
       end
 
@@ -53,19 +52,22 @@ module Cpc
           .sub('__BODY__', post_hsh[:body])
         blog_post.strip
       end
-
-      def save_posts
-        dir = 'spec/output/blog_posts'
-        posts_hsh_ary = Array.new
-        post_divs.each do |xml|
-          md = extract_text_from_xml(xml)
-          path = [dir, md[:h1]].join('/')
-          f = File.open(path, 'w')
-          f.write(md[:h1])
-          # Write text block and yaml front matter
-
-        end
+      
+      def save_post(xml, dir)
+        post_hsh = extract_text_from_xml(xml)
+        blog_post = generate_blog_post(post_hsh)
+        path = [dir, post_hsh[:basename]].join('/')
+        f = File.open(path, 'w')
+        f.write(blog_post)
+        f.close
       end
+
+      # def save_post()
+      #   dir = 'spec/output/blog_posts'
+      #   posts_hsh_ary = Array.new
+      #   post_divs.each do |xml|
+      #   end
+      # end
 
 
     end

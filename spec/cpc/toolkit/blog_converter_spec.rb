@@ -5,7 +5,12 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
 
   let(:post_body_text) do
     <<~HEREDOC
-    When I first learned Python I spent a lot of time in interactive mode:And when I finally started using Gedit, the syntax highlighting and bracket completion felt luxurious.But the time has come for a proper IDE.  I can't justify shelling out $200 for RubyMine just yet, but Atom 1.11.2 looks very promising.Of course, I could learn to use Emacs or Vim, but that's probably a bit too far for me at this stage.  I'd like to get there one day though.
+    When I first learned Python I spent a lot of time in interactive mode:
+    And when I finally started using Gedit, the syntax highlighting and bracket completion felt luxurious.
+    But the time has come for a proper IDE.
+    I can't justify shelling out $200 for RubyMine just yet, but Atom 1.11.2 looks very promising.
+    Of course, I could learn to use Emacs or Vim, but that's probably a bit too far for me at this stage.
+    I'd like to get there one day though.
     HEREDOC
   end
 
@@ -24,7 +29,7 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
   end
 
   context 'Large feed.html', offline: true do
-    feed_path = '/home/alexandergarber/Development/publish/clockworkpc.github.io/_archive/feed.html'
+    feed_path = "#{Dir.home}/Development/publish/clockworkpc.github.io/_archive/feed.html"
     subject = Cpc::Toolkit::BlogConverter.new(feed_path)
 
     it 'should open feed.html with Nokogiri' do
@@ -42,6 +47,7 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
       expect(post[:author]).to eq('Alexander Garber')
       expect(post[:date]).to eq('2016-10-27')
       expect(post[:body]).to eq(post_body_text.strip)
+      expect(post[:basename]).to eq('atom_text_editor_my_new_ide.md')
     end
 
     it 'should generate blog post from text Hash' do
@@ -49,6 +55,12 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
       text_hsh = subject.extract_text_from_xml(xml)
       post_md = subject.generate_blog_post(text_hsh)
       expect(post_md).to eq(post_md_sample.strip)
+    end
+    
+    it 'should save a blog_post' do
+      dir = 'spec/output/blog_posts'
+      xml = subject.post_divs[6]
+      subject.save_post(xml, dir)
     end
 
   end
