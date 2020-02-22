@@ -15,11 +15,11 @@ module Cpc
         <<~HEREDOC
         ---
         layout: post
-        title: '__TITLE__'
-        date: '__DATE__'
+        title: "__TITLE__"
+        date: "__DATE__"
+        author: "__AUTHOR__"
         tags: []
         ---
-        __AUTHOR__
 
         __BODY__
         HEREDOC
@@ -34,16 +34,21 @@ module Cpc
         h2 = xml.children.map {|c| c.text if c.name == 'h2' }.compact.first
         h3 = xml.children.map {|c| c.text if c.name == 'h3' }.compact.first
         body = xml.children.map {|c| c.text if c.name == 'div' }.compact.first
+        basename = [h3, "#{StringUtil.convert_to_file_basename(h1)}.md"].join('-')
+        
+        # body.gsub!(/\.\s*/, ".")
+        # body.gsub!(/(?<foo>[A-Za-z])\./, '\k<foo>'.to_s + ".\n")
+        # body.gsub!(/(?<foo>[A-Za-z])\:/, '\k<foo>'.to_s + ": ")
+        # body.gsub!(/^\W(?<foo>[A-Za-z])/, "" + '\k<foo>'.to_s)
 
 
-        body.gsub!(/(\.)([A-Za-z])/) { |a,b| [a,b].join("\n") }
 
         {
           title: h1,
           author: h2,
           date: h3,
           body: body,
-          basename: [StringUtil.convert_to_file_basename(h1), 'md'].join('.')
+          basename: basename
         }
 
 #         ryan_string = "RyanOnRails: This is a test"
@@ -66,15 +71,14 @@ module Cpc
         f = File.open(path, 'w')
         f.write(blog_post)
         f.close
+        puts blog_post
       end
-
-      # def save_post()
-      #   dir = 'spec/output/blog_posts'
-      #   posts_hsh_ary = Array.new
-      #   post_divs.each do |xml|
-      #   end
-      # end
-
+      
+      def save_posts(xml_ary, dir)
+        xml_ary.each do |xml|
+          save_post(xml, dir)
+        end
+      end
 
     end
   end

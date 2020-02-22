@@ -1,0 +1,47 @@
+I, [2020-02-22T17:58:03.263193 #7320]  INFO -- : Cleared interactions for example "Cpc::Pact::AnimalServiceClient get_alligator returns a alligator"
+I, [2020-02-22T17:58:03.267488 #7320]  INFO -- : Registered expected interaction GET /alligator
+D, [2020-02-22T17:58:03.267805 #7320] DEBUG -- : {
+  "description": "a request for an alligator",
+  "providerState": "an alligator exists",
+  "request": {
+    "method": "get",
+    "path": "/alligator",
+    "query": ""
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Betty"
+    }
+  },
+  "metadata": null
+}
+I, [2020-02-22T17:58:03.271215 #7320]  INFO -- : Received request GET /alligator
+D, [2020-02-22T17:58:03.271483 #7320] DEBUG -- : {
+  "path": "/alligator",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Accept": "*/*",
+    "User-Agent": "Ruby",
+    "Connection": "close",
+    "Host": "localhost:1234",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2020-02-22T17:58:03.271763 #7320]  INFO -- : Found matching response for GET /alligator
+D, [2020-02-22T17:58:03.271902 #7320] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "name": "Betty"
+  }
+}
+I, [2020-02-22T17:58:03.275164 #7320]  INFO -- : Verifying - interactions matched for example "Cpc::Pact::AnimalServiceClient get_alligator returns a alligator"
+I, [2020-02-22T17:58:03.278637 #7320]  INFO -- : Writing pact for Animal Service to /home/alexander/Development/study/cpc-ruby/spec/pacts/zoo_app-animal_service.json

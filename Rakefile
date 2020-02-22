@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 require 'bundler/gem_tasks'
+require 'nokogiri'
 require 'rspec/core/rake_task'
 require 'pry'
+require 'cpc/util/file_parse_util'
+require 'cpc/util/time_stamp_util'
+require 'cpc/toolkit/blog_converter'
 
 # task :default => :spec
 namespace :test do
@@ -125,7 +129,8 @@ namespace :cpc do
       isbn_fetcher = Cpc::Toolkit::IsbnFetcher.new('ISBN_DB_API_KEY')
       isbn_fetcher.batch_fetch_save_to_csv(isbn_hsh_ary, csv_filepath)
     end
-
+    
+    desc 'Pre-publish files for Jekyll'
     task :pre_publish_files_for_jekyll do
       jekyll_path = "#{File.expand_path("~/")}/Development/company/company-test-jekyll"
       src_dir = [jekyll_path, 'src', "concordion"].join('/')
@@ -134,6 +139,15 @@ namespace :cpc do
       FileUtils.rm_rf(Dir.glob("#{tmp_dir}/*"))
       j = Cpc::Toolkit::Concordion::Concordion.new
       j.export_html_reports_to_jekyll(src_dir, tmp_dir, target_dir, Time.now)
+    end
+    
+    desc 'Export blog posts'
+    task :export_blog_posts do
+      dir = '/home/alexander/Development/publish/clockworkpc.github.io/_posts'
+      feed_path = "#{Dir.home}/Development/publish/clockworkpc.github.io/_archive/feed.html"
+      bc = Cpc::Toolkit::BlogConverter.new(feed_path)
+      xml_ary = bc.post_divs
+      bc.save_posts(xml_ary, dir)
     end
   end
 end
