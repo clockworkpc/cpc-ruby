@@ -35,13 +35,19 @@ module Cpc
         h3 = xml.children.map {|c| c.text if c.name == 'h3' }.compact.first
         body = xml.children.map {|c| c.text if c.name == 'div' }.compact.first
 
+
+        body.gsub!(/(\.)([A-Za-z])/) { |a,b| [a,b].join("\n") }
+
         {
           title: h1,
           author: h2,
           date: h3,
-          body: body.sub(/([\:\.])/, "#{$1}\n"),
+          body: body,
           basename: [StringUtil.convert_to_file_basename(h1), 'md'].join('.')
         }
+
+#         ryan_string = "RyanOnRails: This is a test"
+# /^(?<webframework>.*)(?<colon>:)(?<rest>)/ =~ ryan_string
       end
 
       def generate_blog_post(post_hsh)
@@ -52,7 +58,7 @@ module Cpc
           .sub('__BODY__', post_hsh[:body])
         blog_post.strip
       end
-      
+
       def save_post(xml, dir)
         post_hsh = extract_text_from_xml(xml)
         blog_post = generate_blog_post(post_hsh)

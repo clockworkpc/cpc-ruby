@@ -43,6 +43,10 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
     it 'should extract the h1, h2, h3, and body div' do
       xml = subject.post_divs[6]
       post = subject.extract_text_from_xml(xml)
+      puts "SHOULD BE"
+      puts post_body_text
+      puts "RESULT"
+      puts post[:body]
       expect(post[:title]).to eq('Atom Text Editor: My New IDE?')
       expect(post[:author]).to eq('Alexander Garber')
       expect(post[:date]).to eq('2016-10-27')
@@ -56,7 +60,7 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
       post_md = subject.generate_blog_post(text_hsh)
       expect(post_md).to eq(post_md_sample.strip)
     end
-    
+
     it 'should save a blog_post' do
       dir = 'spec/output/blog_posts'
       xml = subject.post_divs[6]
