@@ -33,10 +33,10 @@ module Cpc
         h1 = xml.children.map {|c| c.text if c.name == 'h1' }.compact.first
         h2 = xml.children.map {|c| c.text if c.name == 'h2' }.compact.first
         h3 = xml.children.map {|c| c.text if c.name == 'h3' }.compact.first
-        body = xml.children.map {|c| c.text if c.name == 'div' }.compact.first
+        body = xml.children.map {|c| c if c.name == 'div' }.compact.first.to_s
+        # body = xml.children.map {|c| c.text if c.name == 'div' }.compact.first
 
-
-        body.gsub!(/(\.)([A-Za-z])/) { |a,b| [a,b].join("\n") }
+        # body.gsub!(/(\.)([A-Za-z])/) { |a,b| [a,b].join("\n") }
 
         {
           title: h1,
