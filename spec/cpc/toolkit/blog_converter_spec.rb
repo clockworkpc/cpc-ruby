@@ -5,12 +5,7 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
 
   let(:post_body_text) do
     <<~HEREDOC
-    When I first learned Python I spent a lot of time in interactive mode:
-    And when I finally started using Gedit, the syntax highlighting and bracket completion felt luxurious.
-    But the time has come for a proper IDE.
-    I can't justify shelling out $200 for RubyMine just yet, but Atom 1.11.2 looks very promising.
-    Of course, I could learn to use Emacs or Vim, but that's probably a bit too far for me at this stage.
-    I'd like to get there one day though.
+    When I first learned Python I spent a lot of time in interactive mode:And when I finally started using Gedit, the syntax highlighting and bracket completion felt luxurious.But the time has come for a proper IDE.  I can't justify shelling out $200 for RubyMine just yet, but Atom 1.11.2 looks very promising.Of course, I could learn to use Emacs or Vim, but that's probably a bit too far for me at this stage.  I'd like to get there one day though.
     HEREDOC
   end
 
@@ -18,11 +13,11 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
     <<~HEREDOC
     ---
     layout: post
-    title: 'Atom Text Editor: My New IDE?'
-    date: '2016-10-27'
+    title: "Atom Text Editor: My New IDE?"
+    date: "2016-10-27"
+    author: "Alexander Garber"
     tags: []
     ---
-    Alexander Garber
 
     #{post_body_text}
     HEREDOC
@@ -51,14 +46,14 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
       expect(post[:author]).to eq('Alexander Garber')
       expect(post[:date]).to eq('2016-10-27')
       expect(post[:body]).to eq(post_body_text.strip)
-      expect(post[:basename]).to eq('atom_text_editor_my_new_ide.md')
+      expect(post[:basename]).to eq('2016-10-27-atom_text_editor_my_new_ide.md')
     end
 
     it 'should generate blog post from text Hash', offline: false do
       xml = subject.post_divs[6]
       text_hsh = subject.extract_text_from_xml(xml)
       post_md = subject.generate_blog_post(text_hsh)
-      expect(post_md).to eq(post_md_sample.strip)
+      expect(post_md.split("\n")).to eq(post_md_sample.strip.split("\n"))
     end
 
     it 'should save a blog_post', offline: false do

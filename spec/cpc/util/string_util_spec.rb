@@ -86,12 +86,12 @@ RSpec.describe Cpc::Util::StringUtil do
     end
 
     it 'should parameterize a string' do
-      expect(parameterize('Hello, World')).to eq(:hello_world)
-      expect(parameterize('Hello World')).to eq(:hello_world)
-      expect(parameterize('Hello-World')).to eq(:hello_world)
-      expect(parameterize('Hello_World')).to eq(:hello_world)
-      expect(parameterize('Accept-Encoding')).to eq(:accept_encoding)
-      expect(parameterize('Hello_World-World World')).to eq(:hello_world_world_world)
+      expect(Cpc::Util::StringUtil.parameterize('Hello, World')).to eq(:hello_world)
+      expect(Cpc::Util::StringUtil.parameterize('Hello World')).to eq(:hello_world)
+      expect(Cpc::Util::StringUtil.parameterize('Hello-World')).to eq(:hello_world)
+      expect(Cpc::Util::StringUtil.parameterize('Hello_World')).to eq(:hello_world)
+      expect(Cpc::Util::StringUtil.parameterize('Accept-Encoding')).to eq(:accept_encoding)
+      expect(Cpc::Util::StringUtil.parameterize('Hello_World-World World')).to eq(:hello_world_world_world)
     end
 
     it 'should check whether two texts are the same' do
