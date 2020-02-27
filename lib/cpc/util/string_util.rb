@@ -55,11 +55,19 @@ module Cpc
         mixed_case ? pascal_check : false
       end
 
-      def parameterize(input)
+      def self.parameterize(input)
         str = input.to_s.downcase
         delimiters = [' ', '-', '_', ',', ';']
         delimiters.each { |d| str = str.split(d).join('_') }
         str.split('_').reject { |s| s.empty? }.join('_').to_sym
+      end
+      
+      def self.convert_to_file_basename(input)
+        str = input.to_s.downcase
+        delimiters = [' ', '-', '_', ',', ';']
+        delimiters.each { |d| str = str.split(d).join('_') }
+        b = str.split('_').reject { |s| s.empty? }.join('_')
+        b.gsub(/\W/, '')
       end
 
       def text_diff(str1, str2)

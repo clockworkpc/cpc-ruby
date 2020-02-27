@@ -1,0 +1,166 @@
+{
+  "lib/cpc.rb": {
+  },
+  "lib/cpc/study/my_blocks.rb": {
+  },
+  "lib/cpc/study/spaceship.rb": {
+  },
+  "lib/cpc/util/case_util.rb": {
+  },
+  "lib/cpc/util/google_util.rb": {
+  },
+  "lib/cpc/util/collection_util.rb": {
+  },
+  "lib/cpc/util/api_util.rb": {
+  },
+  "lib/cpc/util/string_util.rb": {
+  },
+  "lib/cpc/util/maths_util.rb": {
+  },
+  "lib/cpc/util/api_response.rb": {
+  },
+  "lib/cpc/util/util.rb": {
+  },
+  "lib/cpc/util/time_stamp_util.rb": {
+  },
+  "lib/cpc/util/file_parse_util.rb": {
+  },
+  "lib/cpc/util/pleasing_print_util.rb": {
+  },
+  "lib/cpc/util/generate_data_util.rb": {
+  },
+  "lib/cpc/util/api_request.rb": {
+  },
+  "lib/cpc/codewars/five_number_summary.rb": {
+  },
+  "lib/cpc/codewars/minecraft_furnace_fuel.rb": {
+  },
+  "lib/cpc/codewars/codewars.rb": {
+  },
+  "lib/cpc/codewars/drying_potatoes.rb": {
+  },
+  "lib/cpc/codewars/order.rb": {
+  },
+  "lib/cpc/codewars/fixed_point_permutations.rb": {
+  },
+  "lib/cpc/codewars/camel_case.rb": {
+  },
+  "lib/cpc/pact/animal_service_client.rb": {
+  },
+  "lib/cpc/pact/animal_service/alligator.rb": {
+  },
+  "lib/cpc/api/my_restful_api.rb": {
+  },
+  "lib/cpc/api/json_placeholder.rb": {
+  },
+  "lib/cpc/api/bitly.rb": {
+  },
+  "lib/cpc/api/http_cat.rb": {
+  },
+  "lib/cpc/api/google_sheets.rb": {
+  },
+  "lib/cpc/api/httpbin.rb": {
+  },
+  "lib/cpc/version.rb": {
+  },
+  "lib/cpc/toolkit/isbn_fetcher.rb": {
+  },
+  "lib/cpc/toolkit/isbn_response.rb": {
+  },
+  "lib/cpc/toolkit/har_harvester.rb": {
+  },
+  "features/support/env.rb": {
+  },
+  "features/step_definitions/fixed_point_permutations_steps.rb": {
+  },
+  "features/step_definitions/minecraft_furnace_fuel_steps.rb": {
+  },
+  "features/step_definitions/order_steps.rb": {
+  },
+  "features/step_definitions/api_steps.rb": {
+  },
+  "features/step_definitions/drying_potatoes_steps.rb": {
+  },
+  "features/step_definitions/five_number_summary_steps.rb": {
+  },
+  "features/step_definitions/jekyll_placer_steps.rb": {
+  },
+  "features/step_definitions/camelcase_steps.rb": {
+  },
+  "features/step_definitions/isbn_fetcher_steps.rb": {
+  },
+  "spec/cpc_spec.rb": {
+  },
+  "spec/service_providers/pact_helper.rb": {
+  },
+  "spec/service_providers/animal_service_client_spec.rb": {
+  },
+  "spec/spec_helper.rb": {
+    "main": [
+      {
+        "name": "hello_spec_helper",
+        "line": 46
+      },
+      {
+        "name": "process_running_on_port?",
+        "line": 50
+      },
+      {
+        "name": "npm_package_installed?",
+        "line": 55
+      }
+    ]
+  },
+  "spec/cpc/study/spaceship_spec.rb": {
+  },
+  "spec/cpc/study/my_blocks_spec.rb": {
+  },
+  "spec/cpc/util/string_util_spec.rb": {
+  },
+  "spec/cpc/util/case_util_spec.rb": {
+  },
+  "spec/cpc/util/generate_data_util_spec.rb": {
+  },
+  "spec/cpc/util/google_util_spec.rb": {
+  },
+  "spec/cpc/util/pleasing_print_util_spec.rb": {
+  },
+  "spec/cpc/util/file_parse_util_spec.rb": {
+  },
+  "spec/cpc/util/api_util_spec.rb": {
+  },
+  "spec/cpc/util/time_stamp_util_spec.rb": {
+  },
+  "spec/cpc/util/maths_util_spec.rb": {
+  },
+  "spec/cpc/util/collection_util_spec.rb": {
+  },
+  "spec/cpc/codewars/five_number_summary_spec.rb": {
+  },
+  "spec/cpc/codewars/minecraft_furnace_fuel_spec.rb": {
+  },
+  "spec/cpc/codewars/order_spec.rb": {
+  },
+  "spec/cpc/codewars/drying_potatoes_spec.rb": {
+  },
+  "spec/cpc/codewars/codewars_spec.rb": {
+  },
+  "spec/cpc/codewars/fixed_point_permutations_spec.rb": {
+  },
+  "spec/cpc/api/my_restful_api_spec.rb": {
+  },
+  "spec/cpc/api/http_cat_spec.rb": {
+  },
+  "spec/cpc/api/httpbin_spec.rb": {
+  },
+  "spec/cpc/api/json_placeholder_spec.rb": {
+  },
+  "spec/cpc/api/bitly_spec.rb": {
+  },
+  "spec/cpc/api/google_sheets_spec.rb": {
+  },
+  "spec/cpc/toolkit/har_harvester_spec.rb": {
+  },
+  "spec/cpc/toolkit/isbn_fetcher_spec.rb": {
+  }
+}
