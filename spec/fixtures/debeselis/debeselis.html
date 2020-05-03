@@ -1,0 +1,1973 @@
+<html lang="en" class=""><head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta http-equiv="content-language" content="en">
+		<meta http-equiv="content-style-type" content="text/css">
+		<meta http-equiv="imagetoolbar" content="no">
+		<meta name="resource-type" content="document">
+		<meta name="distribution" content="global">
+		<meta name="copyright" content="">
+		<meta name="keywords" content="">
+		<meta name="description" content="Debesėlis is a catalogue of words and lessons, powered by your submitions.">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+        <title>Debesėlis - Study the languages of the world</title>
+						<link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">
+		<link href="../../application/views/includes/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="../../application/views/includes/bootstrap/css/boot_deb.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="http://www.debeselis.net/application/views/includes/bootstrap/js/html5shiv.js"></script>
+			<script src="http://www.debeselis.net/application/views/includes/bootstrap/js/respond.min.js"></script>
+		<![endif]-->
+
+        <script>(function(e) { e.className = e.className.replace(/\bno-js\b/,'js'); })(document.documentElement)</script>
+    	<script src="http://code.jquery.com/jquery.js"></script>
+
+        <!--<meta property="og:site_name" content="Debesėlis" />-->
+        <!--<meta property="og:image" content="../logo_opengraph.jpg" />-->
+        <!-- <link rel="shortcut icon" href="http://www.debeselis.net/public/images/icons/favicon.2.ico" /> -->
+        <!-- <link rel="apple-touch-icon" href="http://www.debeselis.net/public/images/icons/apple-touch-icon.png" /> -->
+
+								<script type="text/javascript" src="../../public/js/jquery.hovercard.min.js"></script>
+
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../../application/views/includes/bootstrap/js/bootstrap.min.js"></script>
+    <style id="css-hovercard" type="text/css">.hc-preview { position: relative; display:inline; }.hc-name { font-weight:bold; position:relative; display:inline-block; }.hc-details { left:-10px; margin-right:80px; text-align:left; font-family:Sans-serif !important; font-size:12px !important; color:#666 !important; line-height:1.5em; border:solid 1px #ddd; position:absolute;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;top:-10px;padding:2em 10px 10px;-moz-box-shadow:5px 5px 5px #888;-webkit-box-shadow:5px 5px 5px #888;box-shadow:5px 5px 5px #888;display:none;}.hc-pic { width:70px; margin-top:-1em; float:right;  }.hc-details-open-left { left: auto; right:-10px; text-align:right; margin-left:80px; margin-right:0; } .hc-details-open-left > .hc-pic { float:left; } .hc-details-open-top { bottom:-10px; top:auto; padding: 10px 10px 2em;} .hc-details-open-top > .hc-pic { margin-top:10px; float:right;  }.hc-details .s-action{ position: absolute; top:8px; right:5px; } .hc-details .s-card-pad{ border-top: solid 1px #eee; margin-top:10px; padding-top:10px; overflow:hidden; } .hc-details-open-top .s-card-pad { border:none; border-bottom: solid 1px #eee; margin-top:0;padding-top:0; margin-bottom:10px;padding-bottom:10px; }.hc-details .s-card .s-strong{ font-weight:bold; color: #555; } .hc-details .s-img{ float: left; margin-right: 10px; max-width: 70px;} .hc-details .s-name{ color:#222; font-weight:bold;} .hc-details .s-loc{ float:left;}.hc-details-open-left .s-loc{ float:right;} .hc-details .s-href{ clear:both; float:left;} .hc-details .s-desc{ float:left; font-family: Georgia; font-style: italic; margin-top:5px;width:100%;} .hc-details .s-username{ text-decoration:none;} .hc-details .s-stats { display:block; float:left; margin-top:5px; clear:both; padding:0px;}.hc-details ul.s-stats li{ list-style:none; float:left; display:block; padding:0px 10px !important; border-left:solid 1px #eaeaea;} .hc-details ul.s-stats li:first-child{ border:none; padding-left:0 !important;} .hc-details .s-count { font-weight: bold;} .</style></head>
+<body>
+
+<script>
+// DOCUMENT ONLOAD FUNCTIONS:
+$(document).ready(function(){
+
+    // pretty much every page that uses popups:
+    $(document).on("mouseup",function(e) {
+		containers = new Array($("#add_to_wordlist_popup"),$("#notification_dropdown"),$("#userinfo_dropdown"));
+		$(".button_dialog_menu").each(function(){
+			containers.push($(this));
+		});
+		$.each(containers, function() {
+			container = $(this);
+			if (!container.is(e.target) && container.has(e.target).length === 0) {
+				container.hide();
+			}
+		});
+		    });
+
+
+	// http://enscrollplugin.com/#demos, track3, handle3 in css
+	//$('.notifications_dropdown_li .popover-content').enscroll({
+	//	showOnHover: false,
+	//	verticalTrackClass: 'track3',
+	//	verticalHandleClass: 'handle3'
+	//});
+
+
+
+
+	$(document).on("click", ".translate_submit", function() {
+		_this = $(this);
+		$(_this).prop('disabled', 'disabled');
+		language = $(_this).attr("language");
+		translation = $(_this).closest(".sidebox-body").find(".translation_area").val();
+		if (translation != "" && translation.length <= 300) {
+			datastring = "language="+language+"&translation="+translation;
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/sidebox_translate",
+				data: datastring,
+				cache: false,
+				success: function(html) {
+					if (html == "error") {
+						alert("Something went wrong!");
+					} else if (html == "limit") {
+						alert("You are only allowed one translation in two hours!");
+					} else {
+						$(_this).closest(".sidebox-body").find(".hide_after").hide();
+						$(_this).closest(".sidebox-body").find(".show_after").show();
+						$(_this).closest(".sidebox-body").find(".translate_submit_comment").attr('trans_id',html);
+					}
+				}
+			});
+		}
+	});
+
+	$(document).on("click", ".translate_submit_comment", function() {
+		_this = $(this);
+		language = $(_this).attr("language");
+		trans_id = $(_this).attr("trans_id");
+		$(_this).prop('disabled', 'disabled');
+		comment = $(_this).closest(".sidebox-body").find(".comment_area").val();
+		if (comment != "") {
+			datastring = "language="+language+"&comment="+comment+"&trans_id="+trans_id;
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/sidebox_translate_comment",
+				data: datastring,
+				cache: false,
+				success: function(html) {
+					setTimeout(function(){
+						$(_this).closest(".panel-sidebox").hide('blind', '', 'slow');
+					},100);
+				}
+			});
+		}
+	});
+
+
+
+
+
+
+
+	// Lesson.php print_search_lesson() is being rethought
+    	$(".lessonsearch").on("keyup",function() {
+	    var suggestionCount = 0;
+	    var lsn_lang = getDropdownValue('query_lsn_lang');
+	    var wrt_lang = getDropdownValue('query_wrt_lang');
+	    var list_id = $(this).attr('list_id');
+	    var value = $(this).val();
+	    var dataString = new Array(value,lsn_lang,wrt_lang,list_id);
+	    if (value == '') {
+			$("#displaybox").hide();
+	    } else {
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/lessons_suggestions/add",
+				data: {array:dataString},
+				cache: false,
+				success: function(html) {
+				$("#displaybox").empty();
+				if (html == '') {
+					$("#displaybox").hide();
+				} else {
+					$("#displaybox").html(html).show();
+				}
+				}
+			});
+	    }
+	    return false;
+	});
+	$(".searchbox").on("click",function() {
+		var boxid = $(this).attr('id');
+		var entryid = boxid.substr(9);
+		if ($("#display"+entryid).is(":visible")) {
+		    return false;
+		}
+	});
+
+    // Report usually about "Last edit: xx"
+    $("#flashReport").delay(1500).animate({ opacity: 0 });
+
+    /* test to get rid of */
+	$(".dropdown dt a").on("click", function() {
+	    var dlid = $(this).closest('dl').attr('id');
+	    $("#"+dlid+" dd ul").toggle();
+	});
+	$(".dropdown dd ul li a").on("click", function() {
+		var text = $(this).html();
+	    var dlid = $(this).closest('dl').attr('id');
+	    var entryid = dlid.substr(6);
+	    var containerChildren = $('#entry'+ entryid + ' .newWordClass')[0];
+	    if (containerChildren) {
+			// children existing
+			$(".dropdown dd ul").hide();
+	    } else {
+			$("#"+dlid+" dt a span").html(text);
+			$("#"+dlid+" dt a span").find(".langname").remove();
+			input_value = getDropdownValue(dlid);
+						if ($(this).parents("dl").attr('id') == "header_sel_lang_dd") {
+				sel_lang = $("#header_sel_lang_dd dt a span span.value").html();
+				ajax_call_html(null,"language="+sel_lang,"ajax/header_selected_language");
+				$("#header_sel_lang_refresh").show();
+				replaced = $("#header_sel_lang_refresh").html().replace('#language#',sel_lang);
+				$("#header_sel_lang_refresh").html(replaced);
+				$("#header_sel_lang_caption").html("Click refresh to apply the selected language.");
+			}
+			$(".dropdown dd ul").hide();
+	    }
+			}); /* get rid of */
+
+	$(document).on("click", ".language-select li a", function() {
+	//$(".language-select li a").on("click", function() {
+		var text = $(this).html();
+	    var dlid = $(this).closest('.language-selector').attr('id');
+	    var entryid = dlid.substr(6);
+	    var containerChildren = $('#entry'+ entryid + ' .newWordClass')[0];
+	    if (containerChildren) {
+			// children of grammar+ existing
+	    } else {
+			text = text + "<span class='caret'></span>";
+			$("#"+dlid+" .btn").html(text);
+			$("#"+dlid+" .btn").find(".langname").remove();
+			input_value = $("#"+dlid+" .btn span.value").html();
+						if ($(this).parents("dl").attr('id') == "header_sel_lang_dd") { // recheck!!!
+				sel_lang = $("#header_sel_lang_dd dt a span span.value").html();
+				ajax_call_html(null,"language="+sel_lang,"ajax/header_selected_language");
+				$("#header_sel_lang_refresh").show();
+				replaced = $("#header_sel_lang_refresh").html().replace('#language#',sel_lang);
+				$("#header_sel_lang_refresh").html(replaced);
+				$("#header_sel_lang_caption").html("Click refresh to apply the selected language.");
+			}
+			$(this).closest(".language-selector").siblings("input[lang-selector="+dlid+"]").val(input_value);
+	    }
+			});
+
+	$(document).bind('click', function(e) {
+	    var $clicked = $(e.target);
+	    if (! $clicked.parents().hasClass("dropdown")) {
+			$(".dropdown dd ul").hide();
+			$(".display").hide();
+			$(".display").empty();
+		}
+	});
+
+
+    	/*$('.editsearch').each(function() {
+	    var default_value = this.value;
+	    $(this).css('color', '#666');
+	    $(this).css('font-style', 'italic');
+	    $(this).focus(function() {
+		if(this.value == default_value) {
+		    this.value = '';
+		    $(this).css('color', '#000');
+		    $(this).css('font-style', 'normal');
+		}
+	    });
+	    $(this).blur(function() {
+		if(this.value == '') {
+		    $(this).css('color', '#666');
+		    $(this).css('font-style', 'italic');
+		    this.value = default_value;
+		}
+	    });
+	}); */
+
+
+
+	$(document).on('click','.button_add_sound_link',function(){
+	    word_id = $(this).attr('word_id');
+	    word_dic = $(this).attr('word_dic');
+	    wrapper = $(this).closest(".copy-word-wrapper");
+		link_input = $(wrapper).find("[name=add-sound-name]");
+	    link_value = $(link_input).val();
+	    if (link_value != '') {
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/words_add_sound",
+				data: "wordid=" + word_id + "&dic=" + word_dic + "&link=" + link_value,
+				cache: false,
+				success: function(html) {
+					$(wrapper).removeClass('has-error');
+					$(wrapper).removeClass('message-invalid-url');
+					$(link_input).trigger("blur");
+					if (html == "success") {
+							$(link_input).val('');
+							$(wrapper).closest(".action_button_wrapper[cat=add]").fadeOut("slow", function() {
+							$(wrapper).closest(".action_button_wrapper").siblings("[cat=play]").fadeIn();
+							$(wrapper).closest(".action_button_wrapper").siblings("[cat=play] a").attr('href',link_value);
+							$(wrapper).closest(".action_button_wrapper").siblings("[cat=remove]").fadeIn();
+						});
+					} else if (html == "invalid url") {
+						$(wrapper).addClass('has-error');
+						$(wrapper).addClass('message-invalid-url');
+					}
+				}
+			});
+	    } else {
+			$(wrapper).addClass('has-error');
+	    }
+	    return false;
+	});
+
+	$(document).on('keyup','[name=add-sound-name]',function(){
+		wrapper = $(this).closest(".copy-word-wrapper");
+		$(wrapper).removeClass('has-error');
+		$(wrapper).removeClass('message-invalid-url');
+	});
+
+	$(document).on('click','.button_remove_sound_link',function(){
+		if (confirm('Are you sure you want to remove the sound file?') == false) return false;
+	    wordid = $(this).attr('word_id');
+	    dic = $(this).attr('dic');
+		button = $(this);
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_remove_sound",
+			data: "wordid=" + wordid + "&dic=" + dic,
+			cache: false,
+			success: function(html) {
+				if (html == "success") {
+					$(button).closest(".action_button_wrapper").siblings("[cat=play]").fadeOut();
+					$(button).closest(".action_button_wrapper[cat=remove]").fadeOut("slow", function() {
+						$(button).closest(".action_button_wrapper").siblings("[cat=add]").fadeIn();
+					});
+				}
+			}
+		});
+	    return false;
+	});
+
+	$(document).on('click','.button_vote',function(){
+		direction = $(this).attr('direction');
+	    if (direction == "up") {
+			other_direction = "down";
+	    } else if (direction == "down") {
+			other_direction = "up";
+	    }
+		cat = $(this).attr('cat');
+		if (cat == 'wordlist') {
+			id = $(this).attr('list_id');
+			datastring = "list_id=" + id + "&direction=" + direction;
+		} else if (cat == 'word') {
+			id = $(this).attr('word_id');
+			dic = $(this).attr('word_dic');
+			datastring = "word_id=" + id + "&dic=" + dic + "&direction=" + direction;
+		} else if (cat == 'lesson') {
+			id = $(this).attr('lesson_id');
+			dic = $(this).attr('lesson_dic');
+			datastring = "lesson_id=" + id + "&dic=" + dic + "&direction=" + direction;
+		} else if (cat == 'lessonlist') {
+			id = $(this).attr('list_id');
+			datastring = "list_id=" + id + "&direction=" + direction;
+		} else if (cat == 'note') {
+			id = $(this).attr('note_id');
+			datastring = "note_id=" + id + "&direction=" + direction;
+		} else if (cat == 'comment') {
+			id = $(this).attr('comment_id');
+			type = $(this).attr('comment_type');
+			datastring = "comment_id=" + id + "&comment_type=" + type + "&direction=" + direction;
+		}
+	    select_menu = $(this).closest(".action_button_wrapper");
+	    $.ajax({
+		    type: "POST",
+		    url: "http://www.debeselis.net/ajax/vote_"+cat,
+		    data: datastring,
+		    cache: false,
+		    success: function(html) {
+				if (html.substr(0,7) == "success") {
+					this_button = $(select_menu).find("[name=button_wrapper_" + direction + "]");
+					$(this_button).find(".button_vote").hide();
+					$(this_button).find(".image_voted").show();
+					other_button = $(select_menu).find("[name=button_wrapper_" + other_direction + "]");
+					$(other_button).find(".image_voted").hide();
+					$(other_button).find(".button_vote").show();
+					// new votes and bar
+					var split = html.split("_");
+					if (split.length == 3) {
+						upvotes = parseInt(split[1]);
+						downvotes = parseInt(split[2]);
+						if (direction == "up") {
+							$(this_button).find(".vote_rating").html(upvotes)
+							$(other_button).find(".vote_rating").html(downvotes);
+						} else {
+							$(this_button).find(".vote_rating").html(downvotes)
+							$(other_button).find(".vote_rating").html(upvotes);
+						}
+						percentage = upvotes / (upvotes + downvotes) * 100;
+						bar = $(this_button).parent().parent().find(".percentage_value");
+						$(bar).css('width',percentage+"%");
+					}
+				} else if (html == "failure") {
+					alert("Something went wrong!");
+				} else if (html == "not_logged_in") {
+					window.location = "http://www.debeselis.net/login?page=lessons/list/12";
+				}
+		    }
+	    });
+	    return false;
+	});
+
+	// popup opener: TO DELETE
+	$('.button_display_dialog').on("click", function() {
+	    $(this).closest("div").find(".button_dialog_menu").slideDown();
+	    return false;
+	});
+
+	$(document).on('click','.button_display_hidden_div',function(){
+	    $(this).closest("div").find(".button_hidden_div").slideDown();
+	    return false;
+	});
+
+	$(document).on('click','.button_add_lesson_new_list',function(){
+	    lesson_id = $(this).attr('b_id');
+	    lesson_dic = $(this).attr('b_dic');
+	    lsn_lang = $(this).attr('lsn_lang');
+	    wrt_lang = $(this).attr('wrt_lang');
+	    new_list_input = $(this).parent().children("[name=add-to-new-list-name]");
+	    new_list_name = $(new_list_input).val();
+	    new_list_font = $(new_list_input).css('font-style');
+	    dataArray = new Array(lesson_id,lesson_dic,lsn_lang,wrt_lang,new_list_name);
+	    if (new_list_name != '' && new_list_font != 'italic') {
+		$.ajax({
+		    type: "POST",
+		    url: "http://www.debeselis.net/ajax/lessons_add_lesson_to_new_list",
+		    data: { array : dataArray },
+		    cache: false,
+		    success: function(html) {
+				$(new_list_input).val('');
+				$(new_list_input).trigger("blur");
+				$(new_list_input).parent().children("[name=recent_lists_wrapper]").children().each( function() {
+					if ($(this).is(':hidden')) $(this).show();
+				});
+				$(new_list_input).parent().hide('blind', '', 'slow');
+				$("#lesson_list_info").html(html);
+				tr_parent = $(new_list_input).parents(".trWordlist");
+				if ($(tr_parent).length) {
+					$(tr_parent).fadeOut();
+					// TOSTYLE: recolor table
+				}
+		    }
+		});
+	    } else {
+			$(new_list_input).css('border-color','red');
+	    }
+	    return false;
+	});
+
+	$(document).on('click','.button_add_lesson_existing_list',function(){
+	    lesson_id = $(this).attr('lsn_id');
+	    lesson_dic = $(this).attr('lsn_dic');
+	    list_id = $(this).attr('list_id');
+		refresh = $(this).attr('refresh');
+	    button = $(this);
+	    dataArray = new Array(lesson_id,lesson_dic,list_id);
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/lessons_add_lesson_to_existing_list",
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				if (refresh == 'yes') window.location = "http://www.debeselis.net/lessons/list/" + list_id;
+				$("#lesson_list_info").html(html);
+				tr_parent = $(button).closest(".trWordlist");
+				if ($(tr_parent).length) {
+					$(tr_parent).fadeOut();
+				}
+			}
+	    });
+	    return false;
+	});
+
+	$(document).on('click','.button_remove_lesson_from_list',function(){
+	    lesson_id = $(this).attr('lsn_id');
+	    lesson_dic = $(this).attr('lsn_dic');
+	    list_id = $(this).attr('list_id');
+	    button = $(this);
+	    dataArray = new Array(lesson_id,lesson_dic,list_id);
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/lessons_remove_lesson_from_list",
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				$("#tableWordlist").find("[lesson_id="+lesson_id+"][lesson_dic="+lesson_dic+"]").remove();
+				$("#lesson_list_info").html(html);
+			}
+	    });
+	    return false;
+	});
+
+	$(document).on('click','.button_remove_lesson_delete',function(){
+	    lesson_id = $(this).attr('lsn_id');
+	    lesson_dic = $(this).attr('lsn_dic');
+	    if ($(this).attr('redirect') == 'redirect') { // in 'lessons/lesson'
+			window.location = "http://www.debeselis.net/lessons/delete_lesson/" + lesson_id + "/" + lesson_dic;
+	    }
+	    button = $(this);
+	    dataArray = new Array(lesson_id,lesson_dic);
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/lessons_remove_lesson_in_place", // in 'my_lessons' and 'index'
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				$(button).closest(".button_dialog_menu").hide('blind','','slow', function(){
+					$(button).closest(".trWordlist").hide();
+				});
+				$("#lesson_list_info").html(html);
+			}
+	    });
+	    return false;
+	});
+
+	$(document).on('click','.button_move_lesson_position',function(){
+	    lesson_id = $(this).attr('lsn_id');
+	    lesson_dic = $(this).attr('lsn_dic');
+	    list_id = $(this).attr('list_id');
+	    direction = $(this).attr('direction');
+	    button = $(this);
+	    dataArray = new Array(lesson_id,lesson_dic,list_id);
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/lessons_move_lesson_position/" + direction,
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				if (html == 'success') {
+					var row = $(button).parents("tr:first");
+					if (direction == "up") {
+						row_prev = row.prev();
+						if (row_prev.hasClass('level_row')) row_prev = row_prev.prev();
+						row.insertBefore(row_prev);
+					} else {
+						row_next = row.next();
+						if (row_next.hasClass('level_row')) row_next = row_next.next();
+						row.insertAfter(row_next);
+					}
+					// TOSTYLE recolor
+				}
+			}
+	    });
+		$(".tooltip").hide();
+	    return false;
+	});
+
+	$(document).on('click','.button_move_word_position',function(){
+	    con_id = $(this).attr('con_id');
+		src_lang = $(this).attr('src_lang');
+	    list_id = $(this).attr('list_id');
+	    direction = $(this).attr('direction');
+		button = $(this);
+		$(button).find(".loader_img").show();
+		$(button).find(".arrow_img").hide();
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_move_word_position/" + direction,
+			data: "con_id=" + con_id + "&src_lang=" + src_lang + "&list_id=" + list_id,
+			cache: false,
+			success: function(html) {
+				if (html == 'success') {
+					var row = $(button).parents("tr:first");
+					$(button).tooltip('hide');
+					if (direction == "up") {
+						row.insertBefore(row.prev());
+					} else {
+						row.insertAfter(row.next());
+					}
+				}
+				$(button).find(".loader_img").hide();
+				$(button).find(".arrow_img").show();
+			}
+	    });
+	    return false;
+	});
+
+	$(document).on('click','.button_expand_phrases_in_table',function(){
+		button = $(this);
+		$(button).parents(".trWordlist").find(".hiddenPhrasesDisplay").each(function(){
+			$(this).toggle();
+		});
+		$(button).find("[name=phrases_button_hide]").toggle();
+		$(button).find("[name=phrases_button_display]").toggle();
+		return false;
+	});
+
+	$(document).on('click','.button_expand_all_phrases',function(){
+		button = $(this);
+		hide_test = $(button).find("[name=phrases_button_hide]").is(":visible");
+		$(".hiddenPhrasesDisplay").each(function(){
+			if (hide_test) {
+				$(this).hide();
+			} else {
+				$(this).show();
+			}
+		});
+		$(".button_expand_phrases_in_table").each(function(){
+			in_hide_test = $(this).find("[name=phrases_button_hide]").is(":visible");
+			if (hide_test) {
+				if (in_hide_test) {
+					$(this).find("[name=phrases_button_hide]").toggle();
+					$(this).find("[name=phrases_button_display]").toggle();
+				}
+			} else {
+				if (!in_hide_test) {
+					$(this).find("[name=phrases_button_hide]").toggle();
+					$(this).find("[name=phrases_button_display]").toggle();
+				}
+			}
+		});
+		$(button).find("[name=phrases_button_hide]").toggle();
+		$(button).find("[name=phrases_button_display]").toggle();
+		return false;
+	});
+
+	$(document).on('click','.button_remove_list',function(){
+	    list_id = $(this).attr('list_id');
+	    button = $(this);
+		redirect = $(this).attr('redirect');
+	    dataArray = new Array(list_id);
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/lessons_remove_list",
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				if (redirect == 'yes') window.location = "http://www.debeselis.net/lessons/courses";
+				$(".trWordlist[list_id="+list_id+"]").hide('blind', '', 'slow');
+			}
+	    });
+	    return false;
+	});
+
+	$(document).on('click','.button_copy_word_new_list',function(){
+	    word_id = $(this).attr('word_id');
+	    word_dic = $(this).attr('word_dic');
+	    wrapper = $(this).closest(".copy-word-wrapper");
+		new_list_input = $(wrapper).find("[name=add-to-new-list-name]");
+	    new_list_name = $(new_list_input).val();
+	    dataArray = new Array(word_id,word_dic,new_list_name);
+	    if (new_list_name != undefined && new_list_name != '') {
+			$(this).prop('disabled', 'disabled');
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/words_copy_word_to_new_list",
+				data: { array : dataArray },
+				cache: false,
+				success: function(html) {
+					$(wrapper).removeClass('has-error');
+					$(new_list_input).val('');
+					$(new_list_input).trigger("blur");
+					// hide modal then $(this).prop('disabled', false);
+										new_elem = "div.ajax_wordlists[word_dic='"+word_dic+"'][word_id='"+word_id+"']";
+					ajax_call_html(new_elem,"word_id=" + word_id + "&word_dic=" + word_dic,"ajax/words_word_lists");
+				}
+			});
+	    } else {
+			$(wrapper).addClass('has-error');
+	    }
+	    return false;
+	});
+
+	$(document).on('click','.button_move_con_new_list',function(){
+	    word_id = $(this).attr('word_id');
+	    word_dic = $(this).attr('word_dic');
+		con_id = $(this).attr('con_id');
+	    src_lang = $(this).attr('src_lang');
+	    trg_lang = $(this).attr('trg_lang');
+	    wrapper = $(this).closest(".copy-word-wrapper");
+		new_list_input = $(wrapper).find("[name=move-to-new-list-name]");
+	    new_list_name = $(new_list_input).val();
+		datastring = "word_id="+word_id+"&word_dic="+word_dic+"&con_id="+con_id+"&src_lang="+src_lang+"&trg_lang="+trg_lang+"&list_name="+new_list_name;
+		if (new_list_name != '') {
+			$(this).prop('disabled', 'disabled');
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/words_move_con_to_new_list",
+				data: datastring,
+				cache: false,
+				success: function(html) {
+					$(wrapper).removeClass('has-error');
+					$(new_list_input).val('');
+					$(new_list_input).trigger("blur");
+					$(new_list_input).closest(".trWordlist").fadeOut("slow", function(){$(this).remove();});
+									}
+			});
+	    } else {
+			$(wrapper).addClass('has-error');
+	    }
+	    return false;
+	});
+
+	$(document).on('click','.button_remove_con_from_list',function(){
+	    con_id = $(this).attr('con_id');
+	    src_lang = $(this).attr('src_lang');
+	    list_id = $(this).attr('list_id');
+		word_id = $(this).attr('word_id');
+	    word_dic = $(this).attr('word_dic');
+	    button = $(this);
+	    dataArray = new Array(con_id,src_lang,list_id);
+	    $.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_remove_con_from_list",
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				$(button).hide();
+				ajax_call('wordlist_info');
+				new_elem = "div.ajax_wordlists[word_dic='"+word_dic+"'][word_id='"+word_id+"']";
+				ajax_call_html(new_elem,"word_id=" + word_id + "&word_dic=" + word_dic,"ajax/words_word_lists");
+				new_elem = "div.ajax_wordlists_removed[word_dic='"+word_dic+"'][word_id='"+word_id+"']";
+				ajax_call_html(new_elem,"word_id=" + word_id + "&word_dic=" + word_dic,"ajax/words_word_lists/1");
+				if (html == "success") $(".trWordlist[tr_con_id="+con_id+"][tr_src_lang="+src_lang+"]").remove();
+			}
+	    });
+	    return false;
+	});
+
+	$(document).on('click','.button_remove_word',function(){
+		word_id = $(this).attr('word_id');
+	    word_dic = $(this).attr('word_dic');
+		redirect = $(this).attr('redirect');
+		datastring = "word_id=" + word_id + "&word_dic=" + word_dic + "&redirect=" + redirect;
+		button = $(this);
+		//wrapper = $(this).closest(".copy-word-wrapper");
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_remove_word",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				tr = $(button).closest('.trWordlist');
+				tr2 = $(button).closest('.index_lang_word');
+				if ($(tr).length) {
+					$(tr).hide('slow',function(){
+						if (redirect != "") window.location = "http://www.debeselis.net/"+redirect;
+					});
+				} else if ($(tr2).length) {
+					$(tr2).hide('slow',function(){
+						if (redirect != "") window.location = "http://www.debeselis.net/"+redirect;
+					});
+				} else {
+					if (redirect != "") window.location = "http://www.debeselis.net/"+redirect;
+				}
+			}
+		});
+    });
+
+	$('.button_search_field').on("keyup", function(){
+		category = $(this).attr('cat');
+		input = $(this);
+
+		// cal->new_event, edit_event:
+		$(this).closest(".group_study_wordlist").removeClass("has-success");
+		//$(this).closest(".group_study_wordlist").find(".button_search_field").removeClass("has-success");
+		$(this).closest(".group_study_wordlist").find(".glyphicon-ok").hide();
+		$("#wordlist_id").val("");
+
+	    if ($(input).val() != '') {
+			$(input).parent().children(".loading_wrapper").each(function(){
+				if ($(this).attr('cat') == category) {
+					$(this).show();
+					if (category == 'wordlists_merge') {
+						datastring = "list_id="+$(input).attr('list_id')+"&query="+$(input).val();
+					} else if (category == 'wordlists_copy' || category == 'lessons_copy') {
+						datastring = "word_id="+$(input).attr('word_id')+"&dic="+$(input).attr('word_dic')+"&query="+$(input).val();
+					} else if (category == 'wordlists_move' || category == 'lessons_move') {
+						datastring = "con_id="+$(input).attr('con_id')+"&src_lang="+$(input).attr('src_lang')+"&query="+$(input).val();
+					} else if (category == 'lessonlists_move') {
+						datastring = "lesson_id="+$(input).attr('lesson_id')+"&lesson_dic="+$(input).attr('lesson_dic')+"&query="+$(input).val();
+					} else if (category == 'lessons_move_to_list') {
+						lsn_lang = $("#query_lsn_lang .btn span.value").html();
+						wrt_lang = $("#query_wrt_lang .btn span.value").html();
+						datastring = "list_id="+$(input).attr('list_id')+"&lsn_lang="+lsn_lang+"&wrt_lang="+wrt_lang+"&query="+$(input).val();
+					} else if (category == 'wordlists_select') {
+						src_lang = $("#query_source_language .btn span.value").html();
+						trg_lang = $("#query_target_language .btn span.value").html();
+						datastring = "src_lang="+src_lang+"&trg_lang"+trg_lang+"&query="+$(input).val();
+					}
+					$(this).html("<img src='../../public/images/loader.gif' />");
+					ajax_call_html($(this),datastring,"ajax/words_search_load_"+category);
+				}
+			});
+	    }
+	});
+
+	$(document).on('click','.button_upcoming_event_remove',function(){
+		parent_li_rep_id = $(this).attr('button_event_rep_id');
+		datastring = "eventid="+parent_li_rep_id;
+		$(this).find(".img_remove").hide();
+		$(this).find(".img_loading").show();
+		refresh = $(this).attr('refresh');
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/upcoming_event_remove",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				if (refresh == "true") {
+					window.location = "http://www.debeselis.net/" + "lessons/list/12";
+				}
+				$("[event_rep_id="+parent_li_rep_id+"]").remove();
+				//$("#upcoming_events").html(html);
+				//$(".datepicker").datepicker({firstDay: 1});
+				//$(".datepicker-year").datepicker({changeYear: true, yearRange: '-70:-14', firstDay: 1});
+				//$("input[name='touchspin_interval']").TouchSpin({ initval: 2, min: 1, max: 999 });
+				//$("input[name='touchspin_times']").TouchSpin({ initval: 3, min: 1, max: 999 });
+			}
+	    });
+		return false;
+	});
+
+	$(document).on('click','.button_upcoming_event_postpone',function(){
+		type = $(this).attr('postpone_type');
+		wrapper = $(this).closest(".copy-word-wrapper");
+		event_date = "";
+		event_time = "";
+		time = 3600 * 24;
+		if (type == "offset") {
+			select = $(wrapper).find("[name=touchspin_interval_select]").val();
+			interval = $(wrapper).find("[name=touchspin_interval]").val();
+			if (select == "days") {
+				time = time * parseInt(interval);
+			} else if (select == "hours") {
+				time = 3600 * parseInt(interval);
+			}
+		} else if (type == "date") {
+			event_date = $(wrapper).parent().find("[name=event_date]").val();
+			event_time = $(wrapper).parent().find("[name=event_time]").val();
+		}
+		count = $("#upcoming_events ul li").length;
+		datastring = "eventid="+$(this).attr('event_id')+"&time="+time+"&count="+count+"&spec_date="+event_date+"&spec_time="+event_time;
+		$(this).closest(".postpone_span").find(".img_remove").hide();
+		$(this).closest(".postpone_span").find(".img_loading").show();
+		refresh = $(this).attr('refresh');
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/upcoming_event_postpone",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				if (refresh == "true") {
+					window.location = "http://www.debeselis.net/" + "lessons/list/12";
+				}
+				$("#upcoming_events").html(html);
+				$(".datepicker").datepicker({firstDay: 1});
+				$(".datepicker-year").datepicker({changeYear: true, yearRange: '-70:-14', firstDay: 1});
+				$("input[name='touchspin_interval']").TouchSpin({ initval: 2, min: 1, max: 999 });
+				$("input[name='touchspin_times']").TouchSpin({ initval: 3, min: 1, max: 999 });
+			}
+	    });
+		return false;
+	});
+
+
+
+
+    	var hoverHTMLDemoBasic = "<p style='text-align: center'><img src='../../public/images/loader.gif' /></p>";
+	$(".hovercard_elem").hovercard({
+	    detailsHTML: hoverHTMLDemoBasic,
+	    width: 300,
+	    //cardImgSrc: 'http://ejohn.org/files/short.sm.jpg',
+	    onHoverIn: function () {
+			card = $(this);
+			//alert($(card).html());
+			id = $(card).find('.hovercard_elem').attr('word_id')
+			dic = $(card).find('.hovercard_elem').attr('word_dic')
+			var dataArray = new Array(id, dic);
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/words_show_card/",
+				data: { array : dataArray },
+				cache: false,
+			//    beforeSend: function () {
+			//	$("#demo-cb-tweets").prepend('<p class="loading-text">Loading word...</p>');
+			//    },
+				success: function(html) {
+					if (html == '') {
+
+					} else {
+						$(card).find(".hc-details").html(html);
+					}
+				},
+			//    complete: function () {
+			//	$('.loading-text').remove();
+			//    }
+			});
+    	}
+	});
+	$(".hovercard_elem_sidebox").hovercard({
+	    detailsHTML: hoverHTMLDemoBasic,
+	    width: 245,
+	    onHoverIn: function () {
+			card = $(this);
+			id = $(card).find('.hovercard_elem_sidebox').attr('word_id')
+			dic = $(card).find('.hovercard_elem_sidebox').attr('word_dic')
+			var dataArray = new Array(id, dic);
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/words_show_card/",
+				data: { array : dataArray },
+				cache: false,
+				success: function(html) {
+					if (html != '') { $(card).find(".hc-details").html(html); }
+				},
+			});
+    	}
+	});
+	$(".hovercard_elem_lesson").hovercard({
+	    detailsHTML: hoverHTMLDemoBasic,
+	    width: 400,
+	    onHoverIn: function () {
+			card = $(this);
+			id = $(card).find('.hovercard_elem_lesson').attr('l_id');
+			dic = $(card).find('.hovercard_elem_lesson').attr('l_dic');
+			char_limit = $(card).find('.hovercard_elem_lesson').attr('char_limit');
+			if (char_limit == undefined) char_limit = "";
+			var dataArray = new Array(id, dic);
+			$.ajax({
+				type: "POST",
+				url: "http://www.debeselis.net/ajax/lessons_show_lesson_card/"+char_limit,
+				data: { array : dataArray },
+				cache: false,
+				success: function(html) {
+					if (html != '') {
+						$(card).find(".hc-details").html(html);
+					}
+				},
+			});
+    	}
+	});
+
+
+
+
+
+	$('.cb_everywhere').on("click", function() {
+		elem = $(this);
+		$(elem).closest("tr").find("input[class$='cb_section']").each(function() {
+			if ($(elem).prop('checked') == true) {
+				$(this).prop('checked',true);
+			} else {
+				$(this).prop('checked',false);
+			}
+		});
+	});
+
+	$('.cb_section').on("click", function() {
+		elem = $(this);
+		all_checked = true;
+		all_unchecked = true;
+		$(elem).closest("ol").find("input[class$='cb_section']").each(function() {
+			if ($(this).prop('checked') == true) {
+				all_unchecked = false;
+			} else {
+				all_checked = false;
+			}
+		});
+		if (all_checked || all_unchecked) {
+			$(elem).closest("tr").find("input[class$='cb_everywhere']").each(function() {
+				if (($(this).prop('checked') == true) && (all_unchecked == true)) {
+					$(this).prop('checked',false);
+				}
+				if (($(this).prop('checked') != true) && (all_checked == true)) {
+					$(this).prop('checked',true);
+				}
+			});
+		}
+	});
+
+	//hovering = false;
+	//$(".genmed_elem").on("mouseleave", function() {
+		//console.log(hovering,"upon leaving");
+		//id = $(this).attr("section");
+		//if (hovering == false) { $("#"+id+"_secondary").hide();
+		//$("#lessons_secondary").show(); }
+		//hovering = false;
+	//});
+	$(".genmed_elem").on("mouseenter", function() {
+		//console.log(hovering,"upon entering");
+		//hovering = true;
+		$(".secondary_nav").hide();
+		id = $(this).attr("section");
+		$("#"+id+"_secondary").show();
+	});
+	//$("#datebar").on("mouseleave", function() {
+	//	hovering = false;
+	//});
+	//$("#datebar").on("mouseenter", function() {
+	//	hovering = true;
+	//});
+
+
+});
+
+// JS functions:
+
+    function getDropdownValue(id) {
+		return $("#"+id).find("dt a span.value").html();
+    }
+
+	function swap_dropdowns(dd1,dd2) {
+		val1 = $("#"+dd1).find("dt a span.value").html();
+		val2 = $("#"+dd2).find("dt a span.value").html();
+		$("#"+dd1).find("dt a span.value").html(val2);
+		$("#"+dd2).find("dt a span.value").html(val1);
+		img1 = $("#"+dd1).find("dt a img");
+		img2 = $("#"+dd2).find("dt a img");
+		span1 = $(img1).parent();
+		span2 = $(img2).parent();
+		$(span1).prepend(img2);
+		$(span2).prepend(img1);
+			}
+
+function ajax_call(id) {
+    }
+
+function ajax_call_html(elem,datastring,url,new_calls) {
+	$.ajax({
+		type: "POST",
+		url: "http://www.debeselis.net/" + url,
+		data: datastring,
+		cache: false,
+		success: function(html) {
+			if (elem != undefined) {
+				$(elem).html(html);
+			}
+			if (new_calls != undefined && new_calls.length > 0) {
+				for (index = 0; index < new_calls.length; ++index) {
+					new_elem = new_calls[index][0];
+					new_datastring = new_calls[index][1];
+					new_url = new_calls[index][2];
+					ajax_call_html(new_elem,new_datastring,new_url);
+				}
+			}
+			if ($(elem).attr('id') == "upcoming_events") {
+				$(".datepicker").datepicker({firstDay: 1});
+				$(".datepicker-year").datepicker({changeYear: true, yearRange: '-70:-14', firstDay: 1});
+				$("input[name='touchspin_interval']").TouchSpin({ initval: 2, min: 1, max: 999 });
+				$("input[name='touchspin_times']").TouchSpin({ initval: 3, min: 1, max: 999 });
+			}
+		}
+    });
+}
+
+function ajax_call_html_remove(elem,datastring,url) {
+    $.ajax({
+		type: "POST",
+		url: "http://www.debeselis.net/" + url,
+		data: datastring,
+		cache: false,
+		success: function(html) {
+			if (elem != undefined) {
+				$(elem).fadeOut();
+			}
+		}
+    });
+}
+
+function send_ajax_close_notif(elem) {
+	notif_id = $(elem).attr('notif_id'); // the id that is in the db
+	event_id = $(elem).attr('event_id');
+	usership_id = $(elem).attr('usership_id');
+	notif_li_id = $(elem).attr('notif_li_id'); // the id of li element in the menu dropdown
+	notif_tr_id = $(elem).attr('notif_tr_id'); // the id of tr element in past notifications page
+	ajax_link = $(elem).attr('ajax_link'); // this can be included to carry out a secondary ajax query
+	attr_one = $(elem).attr('attr_one');
+	if (notif_id != undefined) {
+		datastring = "notif_id=" + notif_id;
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/notifications_mark_seen",
+			data: datastring,
+			cache: false,
+			success: function(html) { }
+		});
+	}
+	if (event_id != undefined) {
+		datastring = "event_id=" + event_id;
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/notifications_mark_event_seen",
+			data: datastring,
+			cache: false,
+			success: function(html) { }
+		});
+	}
+	if (usership_id != undefined) {
+		datastring = "usership_id=" + usership_id;
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/notifications_mark_usership_seen",
+			data: datastring,
+			cache: false,
+			success: function(html) { }
+		});
+	}
+	if ($(elem).closest("#notifications_dropdown_li").length == 1 && notif_li_id != undefined) {
+		content = $("#notifications_popover_anchor").attr("data-content");
+		fake_element = document.createElement('div');
+		$(fake_element).html(content);
+		$(fake_element).find("#"+notif_li_id).prev("li").remove();
+		$(fake_element).find("#"+notif_li_id).remove();
+		first = $(fake_element).find("ul li:first");
+		if ($(first).hasClass("notif-divider")) $(first).remove();
+		$(elem).closest('ul').find('#'+notif_li_id).prev("li").remove();
+		$(elem).closest('ul').find('#'+notif_li_id).hide();
+		first = $(elem).closest("ul").find("li:visible:first");
+		if ($(first).hasClass("notif-divider")) $(first).remove();
+		$("#notifications_popover_anchor").attr("data-content",$(fake_element).html());
+		badge_nb = parseInt($("#notifications_popover_anchor").children(".badge").html());
+		$("#notifications_popover_anchor").children(".badge").html(badge_nb-1);
+		if ($('.notification_li').length == 0) {
+			$("#notifications_popover_anchor").popover('hide');
+			$("#notifications_popover_anchor").attr("data-content","<ul style='width: 248px; font-size: 12px;'><li>No new notifications.</li></ul>");
+			$("#notifications_popover_anchor").children(".badge").remove();
+		}
+	}
+	if ($(elem).closest("#seen_notifications_table").length == 1 && notif_tr_id != undefined) {
+		$("#"+notif_tr_id).remove();
+	}
+	if (ajax_link != undefined && attr_one != undefined) {
+		datastring = "attr_one="+attr_one;
+		ajax_call_html(null,datastring,"ajax/"+ajax_link);
+	}
+	if ($(elem).attr('show_accept') != undefined) {
+		html = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span>";
+		html = html + "&nbsp; you are now colleagues with "+$(elem).attr('show_accept')+"</div>";
+		$("#home_line_wrapper").find(".profile_friend_status").html(html);
+		$("#home_line_wrapper").find(".profile_friend_status").addClass("color-green");
+	}
+	return false;
+}
+
+function send_ajax_close_all_notif() {
+	$.ajax({
+		type: "POST",
+		url: "http://www.debeselis.net/ajax/notifications_dismiss_all",
+		cache: false,
+		success: function(html) {
+			$("#notifications_popover_anchor").popover('hide');
+			$("#notifications_popover_anchor").attr("data-content","<ul style='width: 248px; font-size: 12px;'><li>No new notifications.</li></ul>");
+			$("#notifications_popover_anchor").children(".badge").remove();
+		}
+	});
+	return false;
+}
+
+
+    function addit(suggestion_div,lesson_id,lesson_dic,list_id) {
+		suggestion_html = $(suggestion_div).html();
+		dataArray = new Array(lesson_id,lesson_dic,list_id);
+		lesson_name = $(suggestion_div).find('.lesson_suggestion').html();
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/lessons_add_lesson_to_existing_list",
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+				//TOSTYLE
+				alert('Lesson "' + lesson_name + '" added to list!');
+			}
+		});
+		$(suggestion_div).parent().parent().parent().find('.lessonsearch').val('');
+    }
+
+
+// FORM FUNCTIONS
+var activeAjaxConnections = 0;
+function submitDraftForm() {
+    $("#submitButtonLoading").html('<i>Submitting...</i>');
+    if (activeAjaxConnections == 0) {
+		document.draftform.submit();
+    } else {
+		$("#submitButtonLoading").html('<i>Submitting data...</i>');
+		setTimeout(function(){ submitDraftForm(); },100);
+    }
+}
+function submitDraftFormNewList() {
+    var slang = $("#slang .btn span.value").html();
+    var tlang = $("#tlang .btn span.value").html();
+    $("#submit_lsn_lang").val(slang);
+    $("#submit_wrt_lang").val(tlang);
+    document.draftform.submit();
+}
+function submitUserUpdateForm() {
+    var interface_lang = $("#interface_language .btn span.value").html();
+    $("#submit_interface_lang").val(interface_lang);
+    document.update_form.submit();
+}
+function invokeForm(form) {
+    $(form).submit();
+}
+
+
+
+// used for Words/Index (search)
+function create_search_result(dataString) {
+    if ((dataString == '') || (dataString == undefined)) {} else {
+		replaced = dataString.replace('#AND#','&');
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_dictionary_entry",
+			data: replaced,
+			cache: false,
+			success: function(html) {
+				if (html == '') {
+					$("#indexsearchresult").html("Unable to load result.");
+				} else {
+					$("#indexsearchresult").html(html);
+				}
+			}
+		});
+    }
+}
+
+function display_other_languages(elem,section,page) {
+	menu = $(elem).parent().children(".other_langs_menu");
+	if ($(menu).is(':visible')) {
+		$(menu).hide();
+	} else {
+		$(menu).show();
+				datastring = "";
+		href = section;
+		if (page != undefined) href = href + "/" + page
+		ajax_call_html(menu,datastring,"ajax/display_other_languages/"+href);
+	}
+}
+
+// Java helper functions
+function remove_from_table(element,table,effect) {
+    if (table == undefined) {
+		table = $(element).closest('table');
+    }
+    $(element).remove();
+    // the count of the table's trs always includes the header
+    if ($(table).find('tr').length < 2) {
+		$(table).hide();
+    }
+    // TOSTYLE: recolor the table
+	// keep in mind the levels as in lesson_list
+}
+
+function select_all_checkboxes(elem) {
+    $(elem).closest("form").find("input[class$='list_cb']").each(function() {
+	if ($(elem).prop('checked') == true) {
+	    $(this).prop('checked',true);
+	} else {
+	    $(this).prop('checked',false);
+	}
+    });
+}
+
+function submit_selected(formname,all) {
+    none_selected = true;
+	$("form[name="+formname+"] input[type=checkbox]").each(function() {
+		if ($(this).hasClass('list_cb')) {
+			if (all == 'all') $(this).prop('checked',true);
+			if ($(this).prop('checked') == true) {
+				none_selected = false;
+			}
+		}
+    });
+    if ((none_selected == false) || (all == 'all')) {
+		$("form[name="+formname+"]").get(0).submit();
+    } else {
+		// TOSTYLE
+		alert("Nothing selected!");
+    }
+	return false;
+}
+
+
+
+    // appears upon clicking .display_box or 'add to unsorted' button
+    function copy_word_to_list(word_id,dic,list_id,list_info_div,conf) {
+		if (conf == 'confirm') {
+			if (confirm('This will remove the word from all other wordlists. Continue?') == false) return false;
+		}
+		wrapper = $(list_info_div).closest(".copy-word-wrapper");
+		datastring = "wordid=" + word_id + "&dic=" + dic + "&listid=" + list_id;
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_copy_word",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				$(wrapper).find('.loading_wrapper').html('');
+				$(wrapper).find('.button_search_field').val('');
+				new_elem = "div.ajax_wordlists[word_dic='"+dic+"'][word_id='"+word_id+"']";
+				ajax_call_html(new_elem,"word_id=" + word_id + "&word_dic=" + dic,"ajax/words_word_lists");
+				if (html == "success_delete") $(list_info_div).closest(".trWordlist").remove();
+			}
+		});
+		return true;
+    }
+
+	// appears upon clicking .display_box
+    function move_con_to_list(con_id,src,list_id,list_info_div) {
+		datastring = "conid=" + con_id + "&src=" + src + "&listid=" + list_id;
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_move_word",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				$(list_info_div).closest(".trWordlist").fadeOut("slow", function(){	$(this).remove(); });
+			}
+		});
+    }
+
+	// appears upon clicking .display_box
+	function merge_wordlists(id1,id2,list_info_div) {
+		popup = $(list_info_div).parent();
+		datastring = "id1=" + id1 + "&id2=" + id2;
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_merge_wordlists",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				if (html == 'success') {
+					window.location = "http://www.debeselis.net/words/wordlist/" + id1;
+				}
+			}
+		});
+    }
+
+	function select_wordlist(list_id,list_info_div) {
+		$(list_info_div).parent().hide();
+		imgs = $(list_info_div).find("img");
+		src_lang = $(list_info_div).attr("src_lang");
+		trg_lang = $(list_info_div).attr("trg_lang");
+		$(list_info_div).find("img").remove();
+		list_name = $(list_info_div).html().trim();
+		$(list_info_div).closest(".group_study_wordlist").addClass("has-success");
+		$(list_info_div).closest(".group_study_wordlist").removeClass("has-error");
+		$(list_info_div).closest(".group_study_wordlist").find(".button_search_field").val(list_name);
+		$(list_info_div).closest(".group_study_wordlist").find(".glyphicon-ok").show();
+		$(list_info_div).parent().html("");
+		$("#wordlist_id").val(list_id);
+    }
+
+    function addToFavorites(id,dic,button,type) {
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/favorites_add/"+type,
+			data: "id=" + id + "&dic=" + dic,
+			cache: false,
+			success: function(html) {
+				if (html == 'success') {
+					$(button).hide();
+					$(button).closest('div').find('.button_remove_favorites').show();
+				}
+			}
+		});
+    }
+
+    function removeFromFavorites(id,dic,button,type) {
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/favorites_remove/"+type,
+			data: "id=" + id + "&dic=" + dic,
+			cache: false,
+			success: function(html) {
+				if (html == 'success') {
+					$(button).hide();
+					$(button).closest('div').find('.button_add_favorites').show();
+					//$(button).closest('.trWordlist').hide();
+				}
+			}
+		});
+    }
+
+    function addWordToLesson(word_id,word_dic,lesson_id,lesson_dic,list_info_div) {
+		wrapper = $(list_info_div).closest(".copy-word-wrapper");
+		$(wrapper).find('.loading_wrapper').html('');
+		$(wrapper).find('.button_search_field').val('');
+		ajax_call('wordlist_info');
+		datastring = "word_id=" + word_id + "&word_dic=" + word_dic + "&lesson_id=" + lesson_id + "&lesson_dic=" + lesson_dic;
+		new_elem = "div.ajax_wordlists[word_dic='"+word_dic+"'][word_id='"+word_id+"']";
+		new_call = [new_elem, "word_id=" + word_id + "&word_dic=" + word_dic, "ajax/words_word_lists"];
+		new_calls = [new_call];
+		ajax_call_html(null,datastring,"ajax/words_add_word_to_lesson",new_calls);
+    }
+
+	function move_con_to_lesson(con_id,src_lang,lesson_id,lesson_dic,list_info_div) {
+		datastring = "con_id=" + con_id + "&src_lang=" + src_lang + "&lesson_id=" + lesson_id + "&lesson_dic=" + lesson_dic;
+		popup = $(list_info_div).parent();
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_move_con_to_lesson",
+			data: datastring,
+			cache: false,
+			success: function(html) {
+				if (html == 'success') {
+					$(popup).delay(500).fadeOut(500, function(){});
+					$(popup).parents(".trWordlist").fadeOut("slow", function(){	$(this).remove(); });
+					// TOSTYLE: recolor
+				}
+			}
+		});
+    }
+
+	function link_load_upcoming_events() {
+		number = 5;
+		$("#upcoming_events").find("li").each(function(){ number++; });
+		datastring = "number="+number;
+		link = "ajax/upcoming_events";
+		ajax_call_html($("#upcoming_events"),datastring,link);
+		return false;
+	}
+
+
+
+    function submit_edit_selected() {
+		none_selected = true;
+		$("input[class$='list_cb']").each(function() {
+			if ($(this).prop('checked') == true) {
+				none_selected = false;
+			}
+		});
+		if (none_selected == false) {
+			document.wordlist_form.submit();
+		} else {
+			// message that nothing is selected
+			alert("No words selected!");
+		}
+    }
+	function submit_revise_selected() {
+		none_selected = true;
+		$("[name=wordlist_form] input.list_cb").each(function() {
+			console.log($(this).prop('checked'));
+			if ($(this).prop('checked') == true) {
+				none_selected = false;
+			}
+		});
+		if (none_selected == false) {
+			action = $(document.wordlist_form).attr('action');
+			$(document.wordlist_form).attr('action',action.replace('editwords','revise'));
+			document.wordlist_form.submit();
+		} else {
+			// message that nothing is selected
+			alert("No words selected!");
+		}
+    }
+	// AFAIRE
+	function submit_move_selected() {
+		return false;
+		//none_selected = true;
+		//$("input[class$='list_cb']").each(function() {
+		//	if ($(this).prop('checked') == "checked") {
+		//	none_selected = false;
+		//	}
+		//});
+		//if (none_selected == false) {
+		//	document.wordlist_form.submit();
+		//} else {
+		//	// message that nothing is selected
+		//	// TOSTYLE
+		//	alert("No words selected!");
+		//}
+    }
+	function submit_delete_selected() { //AFAIRE
+		return false;
+	}
+    function submit_study_selected() {
+		none_selected = true;
+		$("input[class$='list_cb']").each(function() {
+			if ($(this).prop('checked') == "checked") {
+			none_selected = false;
+			}
+		});
+		if (none_selected == false) {
+			action = $(document.wordlist_form).attr('action');
+			action = action.replace('editwords','studywords');
+			$(document.wordlist_form).attr('action',action);
+			document.wordlist_form.submit();
+		} else {
+			// message that nothing is selected
+			// TOSTYLE
+			alert("No words selected!");
+		}
+    }
+    // for lessons:
+    //AFAIRE if lessons, else if words (with wordlist_form)
+    function submit_add_selected() {
+		none_selected = true;
+		$("input[class$='list_cb']").each(function() {
+			if ($(this).prop('checked') == "checked") {
+			none_selected = false;
+			}
+		});
+		if (none_selected == false) {
+			document.lessons_form.submit();
+		} else {
+			//TOSTYLE
+			alert("No lessons selected!");
+		}
+    }
+    // for prompted words:
+    function submit_add_selected_words(all) {
+		none_selected = true;
+		$("input[class$='list_cb']").each(function() {
+			if (all == 'all') $(this).prop('checked',true);
+			if ($(this).prop('checked') == true) {
+			none_selected = false;
+			}
+		});
+		if ((none_selected == false) || (all == 'all')) {
+			document.prompted_words_form.submit();
+		} else {
+			//TOSTYLE
+			alert("No words selected!");
+		}
+    }
+
+
+    function submitCategoryChange(value,id,dic,type,trid,to_hide) {
+		var dataArray = new Array(value,id,dic,type);
+		$('.select_categories').each(function() {
+			$(this).prop('disabled', 'disabled');
+		});
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_change_study_category/",
+			data: { array : dataArray },
+			cache: false,
+			success: function(html) {
+								$('.select_categories').each(function() {
+					$(this).prop('disabled', false);
+				});
+				$("#"+to_hide).fadeOut("slow", "linear");
+				$("#"+to_hide).remove();
+			},
+			error: function() { }
+		});
+    }
+
+    function load_more_level_prompt(click) {
+		ckey = parseInt($(click).attr('ckey'));
+		ul = $(click).closest(".panel-sidebox").find(".sidebox_ul");
+		offset = $(ul).children('li').size();
+		var dataArray = new Array(ckey,offset);
+		$.ajax({
+			type: "POST",
+			url: "http://www.debeselis.net/ajax/words_load_more_level_prompt/",
+			data: { array : dataArray },
+			cache: false,
+			beforeSend: function () {
+				$(ul).append("<div class='loader_div' style='text-align: center'><img src='../../public/images/loader.gif' /></div>");
+			},
+			success: function(html) {
+				if (html != '') {
+					$(ul).append(html);
+					$(".hovercard_elem_sidebox").hovercard({
+						//detailsHTML: hoverHTMLDemoBasic,
+						width: 245,
+						onHoverIn: function () {
+							card = $(this);
+							id = $(card).find('.hovercard_elem_sidebox').attr('word_id')
+							dic = $(card).find('.hovercard_elem_sidebox').attr('word_dic')
+							var dataArray = new Array(id, dic);
+							$.ajax({
+								type: "POST",
+								url: "http://www.debeselis.net/ajax/words_show_card/",
+								data: { array : dataArray },
+								cache: false,
+								success: function(html) {
+									if (html != '') { $(card).find(".hc-details").html(html); }
+								},
+							});
+						}
+					});
+					$(ul).find("li").each(function(){
+						$(this).slideDown("slow");
+					});
+					$(ul).find(".loader_div").remove();
+					newckey = ckey+5;
+					$(click).attr('ckey',newckey);
+				} else {
+					$(ul).find(".loader_div").remove();
+					if ($(ul).children(".not_found").size() == 0) {
+						$(ul).append("<div class='not_found'>No unrated words have been found.</div>");
+					}
+				}
+			},
+			error: function() { }
+		});
+		return false;
+    }
+</script>
+
+<nav class="navbar navbar-inverse navbar-blue-top navbar-fixed-top" role="navigation" style="min-height: 40px;">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://www.debeselis.net/">Debesėlis</a>
+    </div>
+    <div class="navbar-collapse collapse" style="height: 40px !important; text-align: center;">
+        <ul class="nav navbar-nav ul40">                <li class="dropdown">
+                    <a href="http://www.debeselis.net/words" class="dropdown-toggle">Words</a>                                <ul class="dropdown-menu sub-menu">                                        <li><a href="http://www.debeselis.net/words/search">Search</a></li>                                        <li><a href="http://www.debeselis.net/words/wordlists">Wordlists</a></li>                                </ul>                </li>
+                                <li class="dropdown active ">
+                    <a href="http://www.debeselis.net/lessons" class="dropdown-toggle">Lessons</a>                                <ul class="dropdown-menu sub-menu">                                        <li><a href="http://www.debeselis.net/lessons/browse">Browse Lessons</a></li>                                        <li><a href="http://www.debeselis.net/lessons/search">Search</a></li>                                        <li><a href="http://www.debeselis.net/lessons/courses">Courses</a></li>                                </ul>                </li>
+                                <li class="dropdown">
+                    <a href="http://www.debeselis.net/calendar" class="dropdown-toggle">Calendar</a>                </li>
+                                <li class="dropdown">
+                    <a href="http://www.debeselis.net/notes" class="dropdown-toggle">Notes</a>                </li>
+                                <li class="dropdown">
+                    <a href="http://www.debeselis.net/forums" class="dropdown-toggle">Forums</a>                                <ul class="dropdown-menu sub-menu">                                        <li><a href="http://www.debeselis.net/forums/../forum/search.php">Search</a></li>                                </ul>                </li>
+                                <li class="dropdown">
+                    <a href="http://www.debeselis.net/users" class="dropdown-toggle">Colleagues</a>                                <ul class="dropdown-menu sub-menu">                                        <li><a href="http://www.debeselis.net/users/find">Find Colleagues</a></li>                                </ul>                </li>
+                        </ul>
+        <ul class="nav navbar-nav navbar-right ul40right">
+                            <li><a href="http://www.debeselis.net/register?page=lessons/list/12">Join</a></li>
+                <li><a href="http://www.debeselis.net/login?page=lessons/list/12">Login</a></li>
+                    </ul>
+    </div>
+
+    </nav>
+<!-- End Navigation --><div class="container">
+<div class="container" style="margin-top: 107px;">
+    <div class="row">
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- main column -->
+		        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9" style="background-color: #fff; margin-bottom: 60px;">
+
+							<ol class="breadcrumb" style="">
+					<li><a href="http://www.debeselis.net/lessons">Lessons</a></li>
+					<li><a href="http://www.debeselis.net/lessons/courses">Courses</a></li>
+					<li class="active">Lithuanian Grammar</li>
+				</ol>
+					<h2 class="fl" style="margin: 0; padding: 0;">Lithuanian Grammar</h2>
+		<div class="fr" name="buttons"></div>
+		<div class="cll">
+		28 Lithuanian lessons<br>
+				<p>
+		<span class="posted-by">
+		made by <a href="http://www.debeselis.net/users/Pigmalijonas">Pigmalijonas</a></span>
+		</p>
+		Written in: <img src="../../public/images/flags/png/en.png">&nbsp;<br>
+		About: <img src="../../public/images/flags/png/lt.png">&nbsp;
+		</div>
+		<div class="top_dash">
+									<div name="button_wrapper" class="action_button_wrapper fr" style="margin-top: -2px; padding: 0; width: 100px;">
+				<div class="vote_percentage" style="height: 2px; background-color: #CCC;">
+					<div class="percentage_value" style="width: 95.2380952381%; height: 2px; background-color: black;"></div>
+				</div>
+				<div class="vote_buttons_wrapper fr">
+					<div class="fl" name="button_wrapper_up" style="height: 25px; vertical-align: middle;">
+						<img class="image_vote fl" src="../../public/images/img/vote_up.png" style="display: inline">						<img class="image_voted fl" src="../../public/images/img/voted_up.png" style="display: none; margin-top: 1px;">
+						<div class="vote_rating fl" style="line-height: 25px; height: 25px;">20</div>
+					</div>
+					<div class="fl" name="button_wrapper_down" style="height: 25px; vertical-align: middle; text-align: right;">
+						<img class="image_vote fl" src="../../public/images/img/vote_down.png" style="display: inline">						<img class="image_voted fl" src="../../public/images/img/voted_down.png" style="display: none; margin-top: -2px;">
+						<div class="vote_rating fl" style="line-height: 25px; height: 25px;">1</div>
+					</div>
+				</div>
+			</div>		</div>
+				<p>This lesson list is an overview of Lithuanian grammar for intermediate and advanced learners.<br>
+<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/211"><b>Nouns</b></a> - Learn everything about nouns, their cases and declensions.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/214"><b>Adjectives</b></a> - Learn all about adjectives, their declensions, comparison, the pronominal adjectives and the neuter gender.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/219"><b>Adverbs</b></a> - Learn the bases of adverbs and their comparison.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/221"><b>Numbers</b></a> - Learn about Lithuanian numbers. (Declining 2-3, 4-9, 11-19.)<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/223"><b>Pronouns</b></a> - Learn about pronouns: personal, impersonal and possesive.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/227"><b>Verbs</b></a> - Learn the bases of verbs and their conjugations, tenses and moods. (Reflexive forms.)<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/231"><b>Conjunctions</b></a> - Learn the bases of Lithuanian conjunctions.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/232"><b>Prepositions</b></a> - Learn about Lithuanian prepositions.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/233"><b>Interjections</b></a> - Learn about Lithuanian interjections. As if there was much to learn.<br>
+<a href="http://www.debeselis.net/lessons/lesson/temp/234"><b>Participles</b></a> - Learn about Lithuanian participles.</p>
+								<!-- AFAIRE <p>Search: <input type="text" /></p> -->
+		<nav style="text-align: center"></nav>
+				<form action="http://www.debeselis.net/lessons/my_lessons" name="lessons_form" method="post" style="padding-bottom: 8px;">
+			<table class="table">
+			<thead>
+			<tr>
+								<th><input type="checkbox" name="all_cb" id="all_cb" value="accept" onchange="select_all_checkboxes(this)"></th>
+								<th>Lesson</th>
+				<th>Date</th>
+				<th>In</th>
+				<th>About</th>
+				<th></th>
+			</tr>
+			</thead>						<tbody><tr class="active" height="30px" level="B2">
+														<td colspan="6" style="text-align: center; font-weight: 800;">Level B2</td>
+						</tr>				<tr id="_entry0" class="trWordlist" lesson_id="211" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb211-temp" id="list_cb211" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/211" class="hovercard_elem_lesson hc-name" l_id="211" l_dic="temp">Nouns</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry1" class="trWordlist odd" lesson_id="212" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb212-temp" id="list_cb212" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/212" class="hovercard_elem_lesson hc-name" l_id="212" l_dic="temp">Cases</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry2" class="trWordlist" lesson_id="213" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb213-temp" id="list_cb213" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/213" class="hovercard_elem_lesson hc-name" l_id="213" l_dic="temp">Declension of Nouns</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry3" class="trWordlist odd" lesson_id="214" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb214-temp" id="list_cb214" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/214" class="hovercard_elem_lesson hc-name" l_id="214" l_dic="temp">Adjectives</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry4" class="trWordlist" lesson_id="215" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb215-temp" id="list_cb215" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/215" class="hovercard_elem_lesson hc-name" l_id="215" l_dic="temp">Declension of Adjectives</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry5" class="trWordlist odd" lesson_id="216" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb216-temp" id="list_cb216" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/216" class="hovercard_elem_lesson hc-name" l_id="216" l_dic="temp">Comparison of Adjectives</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry6" class="trWordlist" lesson_id="217" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb217-temp" id="list_cb217" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/217" class="hovercard_elem_lesson hc-name" l_id="217" l_dic="temp">Nominal Adjectives</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry7" class="trWordlist odd" lesson_id="218" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb218-temp" id="list_cb218" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/218" class="hovercard_elem_lesson hc-name" l_id="218" l_dic="temp">Neuter Gender</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry8" class="trWordlist" lesson_id="219" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb219-temp" id="list_cb219" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/219" class="hovercard_elem_lesson hc-name" l_id="219" l_dic="temp">Adverbs</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry9" class="trWordlist odd" lesson_id="220" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb220-temp" id="list_cb220" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/220" class="hovercard_elem_lesson hc-name" l_id="220" l_dic="temp">Comparison of Adverbs</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry10" class="trWordlist" lesson_id="221" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb221-temp" id="list_cb221" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/221" class="hovercard_elem_lesson hc-name" l_id="221" l_dic="temp">Numbers</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry11" class="trWordlist odd" lesson_id="222" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb222-temp" id="list_cb222" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/222" class="hovercard_elem_lesson hc-name" l_id="222" l_dic="temp">Declension of 2, 3, 4-9, 11-19</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry12" class="trWordlist" lesson_id="223" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb223-temp" id="list_cb223" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/223" class="hovercard_elem_lesson hc-name" l_id="223" l_dic="temp">Pronouns</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry13" class="trWordlist odd" lesson_id="224" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb224-temp" id="list_cb224" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/224" class="hovercard_elem_lesson hc-name" l_id="224" l_dic="temp">Personal Pronouns</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry14" class="trWordlist" lesson_id="225" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb225-temp" id="list_cb225" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/225" class="hovercard_elem_lesson hc-name" l_id="225" l_dic="temp">Impersonal Pronouns</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry15" class="trWordlist odd" lesson_id="226" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb226-temp" id="list_cb226" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/226" class="hovercard_elem_lesson hc-name" l_id="226" l_dic="temp">Possesive Pronouns</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry16" class="trWordlist" lesson_id="227" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb227-temp" id="list_cb227" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/227" class="hovercard_elem_lesson hc-name" l_id="227" l_dic="temp">Verbs</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry17" class="trWordlist odd" lesson_id="228" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb228-temp" id="list_cb228" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/228" class="hovercard_elem_lesson hc-name" l_id="228" l_dic="temp">Conjugation of Verbs</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry18" class="trWordlist" lesson_id="229" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb229-temp" id="list_cb229" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/229" class="hovercard_elem_lesson hc-name" l_id="229" l_dic="temp">Tenses and Moods of Verbs</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry19" class="trWordlist odd" lesson_id="230" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb230-temp" id="list_cb230" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/230" class="hovercard_elem_lesson hc-name" l_id="230" l_dic="temp">Reflexive Verbs</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry20" class="trWordlist" lesson_id="231" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb231-temp" id="list_cb231" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/231" class="hovercard_elem_lesson hc-name" l_id="231" l_dic="temp">Conjunctions</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry21" class="trWordlist odd" lesson_id="232" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb232-temp" id="list_cb232" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/232" class="hovercard_elem_lesson hc-name" l_id="232" l_dic="temp">Prepositions</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry22" class="trWordlist" lesson_id="233" lesson_dic="temp" level="B2">
+								<td><input type="checkbox" class="list_cb" name="list_cb233-temp" id="list_cb233" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/233" class="hovercard_elem_lesson hc-name" l_id="233" l_dic="temp">Interjections</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>						<tr class="active" height="30px" level="C1">
+														<td colspan="6" style="text-align: center; font-weight: 800;">Level C1</td>
+						</tr>				<tr id="_entry23" class="trWordlist odd" lesson_id="234" lesson_dic="temp" level="C1">
+								<td><input type="checkbox" class="list_cb" name="list_cb234-temp" id="list_cb234" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/234" class="hovercard_elem_lesson hc-name" l_id="234" l_dic="temp">Participles</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry24" class="trWordlist" lesson_id="235" lesson_dic="temp" level="C1">
+								<td><input type="checkbox" class="list_cb" name="list_cb235-temp" id="list_cb235" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/235" class="hovercard_elem_lesson hc-name" l_id="235" l_dic="temp">Participles: dalyvis</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 5 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry25" class="trWordlist odd" lesson_id="236" lesson_dic="temp" level="C1">
+								<td><input type="checkbox" class="list_cb" name="list_cb236-temp" id="list_cb236" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/236" class="hovercard_elem_lesson hc-name" l_id="236" l_dic="temp">Participles: pusdalyvis</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 6 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry26" class="trWordlist" lesson_id="237" lesson_dic="temp" level="C1">
+								<td><input type="checkbox" class="list_cb" name="list_cb237-temp" id="list_cb237" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/237" class="hovercard_elem_lesson hc-name" l_id="237" l_dic="temp">Participles: padalyvis</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 6 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>				<tr id="_entry27" class="trWordlist odd" lesson_id="238" lesson_dic="temp" level="C1">
+								<td><input type="checkbox" class="list_cb" name="list_cb238-temp" id="list_cb238" value="accept"></td>
+								<td><div class="hc-preview"><a href="http://www.debeselis.net/lessons/lesson/temp/238" class="hovercard_elem_lesson hc-name" l_id="238" l_dic="temp">Participles: būdinys</a><div class="hc-details" style="width: 400px; background: rgb(255, 255, 255);"><p style="text-align: center"><img src="../../public/images/loader.gif"></p></div></div></td>
+				<td> 6 November 2014</td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/en.png"></td>
+				<td style="text-align: center;"><img src="../../public/images/flags/png/lt.png"></td>
+				<td></td>
+				</tr>			</tbody></table>
+		</form>
+				<nav style="text-align: center"></nav>
+
+		</div><!-- /.main column -->
+
+		<!-- sidebar -->
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+												<!-- SIDEBOXES -->
+			<div class="row" style=""></div>		</div>
+		    </div><!--/.row-->
+</div><!--/.container--></div>
+<div class="ftr">
+    <div class="container">
+        <div class="row">
+            <footer style="text-align: center;">
+				<p>© Debesėlis 2015</p>
+            </footer>
+        </div>
+    </div>
+</div>
+<script>
+
+
+
+$("#notifications_popover_anchor").popover({
+	html: true,
+	trigger: 'manual click',
+	container: $(this).attr('id'),
+	//placement: 'bottom',
+	//content: function () {
+	//    $return = '<div class="hover-hovercard"></div>';
+	//}
+}).on("mouseenter", function () {
+	var _this = this;
+	$(this).popover("show");
+	$(this).siblings(".popover").on("mouseleave", function () {
+		$(_this).popover('hide');
+	});
+}).on("mouseleave", function () {
+	var _this = this;
+	setTimeout(function () {
+		if (!$(".popover:hover").length) {
+			$(_this).popover("hide")
+		}
+	}, 100);
+});
+
+
+//$(".revise-popover").popover({html:true});
+$("[data-toggle=popover]").on('click', function(e) {e.preventDefault(); return true;});
+
+$('[data-toggle="tooltip"]').tooltip();
+
+$("[data-toggle=popover]").on('click', function (e) {
+    $("[data-toggle=popover]").not(this).popover('hide');
+});
+
+$('body').on('click', function (e) {
+	//only buttons
+	if ($(e.target).data('toggle') !== 'popover'
+		&& $(e.target).parents('.popover.in').length === 0) {
+		$('[data-toggle="popover"]').popover('hide');
+	}
+	//buttons and icons within buttons
+	//if ($(e.target).data('toggle') !== 'popover'
+	//	&& $(e.target).parents('[data-toggle="popover"]').length === 0
+	//	&& $(e.target).parents('.popover.in').length === 0) {
+	//	$('[data-toggle="popover"]').popover('hide');
+	//}
+});
+
+// Popovers with ajax:
+$(".revise-popover").popover({
+	"html": true,
+	"content": function() {
+		div_id = "tmp-id-" + $.now();
+		word_id = $(this).attr('data-word-id');
+		word_dic = $(this).attr('data-word-dic');
+		//lemma_id = $(this).attr('data-lemma_id');
+		datastring = 'word_id='+word_id+'&word_dic='+word_dic;
+		link = "http://www.debeselis.net/ajax/words_show_popover_entry";
+		return details_in_popup(link,datastring,div_id);
+	}
+});
+
+function details_in_popup(link,datastring,div_id){
+	$.ajax({
+		type: "POST",
+		url: link,
+		data: datastring,
+		success: function(response){
+			$('#'+div_id).html(response);
+		}
+	});
+	return '<div id="'+ div_id +'" style="width: 184px"><div style="text-align: center;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div></div>';
+}
+
+</script>
+
+
+</body></html>

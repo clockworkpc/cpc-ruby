@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/hash'
 require 'bundler/setup'
 require 'clipboard'
@@ -17,6 +19,10 @@ require 'cpc/codewars/order'
 
 require 'cpc/toolkit/har_harvester'
 require 'cpc/toolkit/isbn_fetcher'
+require 'cpc/toolkit/course_extractor'
+require 'cpc/toolkit/routes_tabulator'
+require 'cpc/toolkit/markdown_table_parser'
+require 'cpc/toolkit/links_extractor'
 
 require 'cpc/api/bitly'
 require 'cpc/api/google_sheets'
@@ -46,7 +52,7 @@ require 'cpc/study/execute_around'
 require 'cpc/study/block_to_proc'
 
 def hello_spec_helper
-  puts Rainbow("Hello, Spec Helper!").green
+  puts Rainbow('Hello, Spec Helper!').green
 end
 
 def process_running_on_port?(port_int)
@@ -63,7 +69,7 @@ end
 RSpec.configure do |config|
   # Require all files in lib folder
 
- # Make sensitive variables from Dotenv available
+  # Make sensitive variables from Dotenv available
   Dotenv.load
 
   # Make sensitive variables from Figaro available
@@ -71,7 +77,7 @@ RSpec.configure do |config|
   # Figaro.load
 
   # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.example_status_persistence_file_path = '.rspec_status'
 
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
