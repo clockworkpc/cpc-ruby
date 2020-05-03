@@ -23,6 +23,7 @@ require 'cpc/toolkit/course_extractor'
 require 'cpc/toolkit/routes_tabulator'
 require 'cpc/toolkit/markdown_table_parser'
 require 'cpc/toolkit/links_extractor'
+require 'cpc/toolkit/words_generator'
 
 require 'cpc/api/bitly'
 require 'cpc/api/google_sheets'

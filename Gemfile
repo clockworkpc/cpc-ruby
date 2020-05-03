@@ -14,6 +14,7 @@ gem 'facets'
 gem 'google-api-client'
 gem 'guard-rspec', require: false
 gem 'httparty'
+gem 'markdown-tables'
 gem 'nokogiri'
 gem 'pact'
 gem 'pry-rescue'
