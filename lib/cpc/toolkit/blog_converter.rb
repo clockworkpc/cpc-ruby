@@ -33,15 +33,8 @@ module Cpc
         h1 = xml.children.map {|c| c.text if c.name == 'h1' }.compact.first
         h2 = xml.children.map {|c| c.text if c.name == 'h2' }.compact.first
         h3 = xml.children.map {|c| c.text if c.name == 'h3' }.compact.first
-        body = xml.children.map {|c| c.text if c.name == 'div' }.compact.first
+        body = xml.children[7].to_s
         basename = [h3, "#{StringUtil.convert_to_file_basename(h1)}.md"].join('-')
-        
-        # body.gsub!(/\.\s*/, ".")
-        # body.gsub!(/(?<foo>[A-Za-z])\./, '\k<foo>'.to_s + ".\n")
-        # body.gsub!(/(?<foo>[A-Za-z])\:/, '\k<foo>'.to_s + ": ")
-        # body.gsub!(/^\W(?<foo>[A-Za-z])/, "" + '\k<foo>'.to_s)
-
-
 
         {
           title: h1,
@@ -51,8 +44,6 @@ module Cpc
           basename: basename
         }
 
-#         ryan_string = "RyanOnRails: This is a test"
-# /^(?<webframework>.*)(?<colon>:)(?<rest>)/ =~ ryan_string
       end
 
       def generate_blog_post(post_hsh)
@@ -68,18 +59,18 @@ module Cpc
         post_hsh = extract_text_from_xml(xml)
         blog_post = generate_blog_post(post_hsh)
         path = [dir, post_hsh[:basename]].join('/')
+        system("touch #{path}")
         f = File.open(path, 'w')
         f.write(blog_post)
         f.close
         puts blog_post
       end
-      
+
       def save_posts(xml_ary, dir)
         xml_ary.each do |xml|
           save_post(xml, dir)
         end
       end
-
     end
   end
 end

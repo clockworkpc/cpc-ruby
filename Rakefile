@@ -129,7 +129,7 @@ namespace :cpc do
       isbn_fetcher = Cpc::Toolkit::IsbnFetcher.new('ISBN_DB_API_KEY')
       isbn_fetcher.batch_fetch_save_to_csv(isbn_hsh_ary, csv_filepath)
     end
-    
+
     desc 'Pre-publish files for Jekyll'
     task :pre_publish_files_for_jekyll do
       jekyll_path = "#{File.expand_path("~/")}/Development/company/company-test-jekyll"
@@ -140,10 +140,10 @@ namespace :cpc do
       j = Cpc::Toolkit::Concordion::Concordion.new
       j.export_html_reports_to_jekyll(src_dir, tmp_dir, target_dir, Time.now)
     end
-    
+
     desc 'Export blog posts'
     task :export_blog_posts do
-      dir = '/home/alexander/Development/publish/clockworkpc.github.io/_posts'
+      dir = "#{Dir.home}/Development/publish/clockworkpc.github.io/_posts"
       feed_path = "#{Dir.home}/Development/publish/clockworkpc.github.io/_archive/feed.html"
       bc = Cpc::Toolkit::BlogConverter.new(feed_path)
       xml_ary = bc.post_divs

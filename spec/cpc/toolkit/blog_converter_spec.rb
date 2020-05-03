@@ -49,14 +49,14 @@ RSpec.describe Cpc::Toolkit::BlogConverter do
       expect(post[:basename]).to eq('2016-10-27-atom_text_editor_my_new_ide.md')
     end
 
-    it 'should generate blog post from text Hash' do
+    it 'should generate blog post from text Hash', offline: false do
       xml = subject.post_divs[6]
       text_hsh = subject.extract_text_from_xml(xml)
       post_md = subject.generate_blog_post(text_hsh)
       expect(post_md.split("\n")).to eq(post_md_sample.strip.split("\n"))
     end
-    
-    it 'should save a blog_post' do
+
+    it 'should save a blog_post', offline: false do
       dir = 'spec/output/blog_posts'
       xml = subject.post_divs[6]
       subject.save_post(xml, dir)
