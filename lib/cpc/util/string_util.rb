@@ -3,7 +3,7 @@ module Cpc
     module StringUtil
       include Util
       def hello_string_util
-        "hello_string_util"
+        'hello_string_util'
       end
 
       def mysql_query(sql_template_path, sql_params_hsh)
@@ -41,15 +41,15 @@ module Cpc
       end
 
       def pascal_case?(str)
-        downcase_ary = str.split("").select {|s| s.match?(/[a-z]/)}
-        upcase_ary = str.split("").select {|s| s.match?(/[A-Z]/)}
+        downcase_ary = str.split('').select {|s| s.match?(/[a-z]/)}
+        upcase_ary = str.split('').select {|s| s.match?(/[A-Z]/)}
 
-        has_downcase = downcase_ary.count > 0
-        has_upcase = upcase_ary.count > 0
+        has_downcase = downcase_ary.positive?
+        has_upcase = upcase_ary.positive?
         mixed_case = has_downcase && has_upcase
 
-        split_ary = str.gsub(/[A-Z]/) { |s| [ " ", s].join }.split
-        pascal_check_ary = split_ary.map {|s| s.match?(/[A-Z][a-z]*/) }.uniq
+        split_ary = str.gsub(/[A-Z]/) { |s| [ ' ', s].join }.split
+        pascal_check_ary = split_ary.map { |s| s.match?(/[A-Z][a-z]*/) }.uniq
         pascal_check = pascal_check_ary.count == 1 && pascal_check_ary.first == true
 
         mixed_case ? pascal_check : false
@@ -59,14 +59,14 @@ module Cpc
         str = input.to_s.downcase
         delimiters = [' ', '-', '_', ',', ';']
         delimiters.each { |d| str = str.split(d).join('_') }
-        str.split('_').reject { |s| s.empty? }.join('_').to_sym
+        str.split('_').reject(&:empty?).join('_').to_sym
       end
       
       def self.convert_to_file_basename(input)
         str = input.to_s.downcase
         delimiters = [' ', '-', '_', ',', ';']
         delimiters.each { |d| str = str.split(d).join('_') }
-        b = str.split('_').reject { |s| s.empty? }.join('_')
+        b = str.split('_').reject(&:empty?).join('_')
         b.gsub(/\W/, '')
       end
 
@@ -89,6 +89,8 @@ module Cpc
       def xml?(str)
         str.split("\n").first.match?(/<\?xml\s.+\?>/)
       end
+
+      def something; end
 
     end
   end
