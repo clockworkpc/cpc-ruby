@@ -1,4 +1,3 @@
-
                                Prefix Verb   URI Pattern                                                                              Controller#Action
                                  root GET    /                                                                                        home#index
                      new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
